@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>石头剪刀布wp - Hexo</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="Hexo">
+    <meta property="og:title" content="石头剪刀布wp"/>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>Hexo</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>石头剪刀布wp</h2>
+            <div class="post-meta">
+                <time class="date">2024.03.05</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <h1 id="石头剪刀布"><a href="#石头剪刀布" class="headerlink" title="石头剪刀布"></a>石头剪刀布</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line">ip = <span class="string">&#x27;8.147.131.39:18719&#x27;</span>.split(<span class="string">&quot;:&quot;</span>)</span><br><span class="line">c = remote(ip[<span class="number">0</span>],ip[<span class="number">1</span>])</span><br><span class="line">l = <span class="string">&#x27;00000112201202021021100111222001200221101201010212202100221101012020210210011&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(l)):</span><br><span class="line">    c.sendline(l[i])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">200</span>-<span class="built_in">len</span>(l)):</span><br><span class="line">    c.sendline(<span class="built_in">str</span>(randint(<span class="number">0</span>,<span class="number">2</span>)))</span><br><span class="line"></span><br><span class="line">c.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>直接爆破，根据源码可以知道预测的下一位是由当前所有的输入的选择生成的，也就说明当输入一致时，下一位的预测一定确定。接下来一位一位爆破，</p>
+<p><img src="https://img.picgo.net/2023/12/17/Snipaste_2023-12-17_16-40-153c56373e5a9ab76e.png" alt="Snipaste_2023-12-17_16-40-153c56373e5a9ab76e.png"></p>
+<p>如图，当输入序列为：’00000112201202021021100111222001200221101201010212202100221101012020210210011’时下一位输入1胜利则再输入序列后添加1，以此循环往复即可超过260分。（后面懒得爆破了直接靠概率多试几次就拿到flag了）</p>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: <a href="/2024/03/05/%E9%9B%86%E8%AE%AD3-4%E5%91%A8wp/">集训3-4周wp</a></li>
+                
+                
+                    <li>下一篇: <a href="/2024/03/05/%E9%9B%86%E8%AE%AD1-2%E5%91%A8wp/">集训1-2周wp</a></li>
+                
+            </ul>
+        </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://avatars.githubusercontent.com/u/149282793?v=4" alt="Skynion" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>Skynion</h4>
+                <p>学习Pwn ing</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E5%AF%92%E5%81%87%E7%AC%AC1%E5%91%A8wp/">寒假第1周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD3-4%E5%91%A8wp/">集训3-4周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E7%9F%B3%E5%A4%B4%E5%89%AA%E5%88%80%E5%B8%83/">石头剪刀布wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD1-2%E5%91%A8wp/">集训1-2周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD5-6%E5%91%A8wp/">集训5-6周wp</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2024 <a href="/">Hexo</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>

