@@ -5,8 +5,8 @@
   <meta name="Volantis" content="6.0.0-alpha.1">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="http://example.com/tags/ctf/"/>
+  
+  <link rel="canonical" href="http://example.com/2024/08/07/出题流程/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -33,18 +33,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>Tag: CTF - Skynion's world</title>
-  <meta name="keywords" content="null">
+  <title>GZ:CTF pwn 出题流程 - Skynion's world</title>
+  <meta name="keywords" content="CTF,null">
   <meta desc name="description" content="NaN - Skynion - Skynion's world">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="Skynion&#39;s world">
-<meta property="og:url" content="http://example.com/tags/CTF/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GZ:CTF pwn 出题流程">
+<meta property="og:url" content="http://example.com/2024/08/07/%E5%87%BA%E9%A2%98%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Skynion&#39;s world">
-<meta property="og:description" content="NaN">
+<meta property="og:description" content="0x01安装docker desktop 因本人尝试在kali安装docker未成功, 故最后使用傻瓜式安装的docker desktop  打开 docker官网 (访问本网站需要magic 能看到我文章的应该都会magic吧) 下载docker desktop并安装  1.1给docker换源将如下代码复制到docker engine中 123456789101112131415161718&amp;">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2024-08-07T05:27:31.000Z">
+<meta property="article:modified_time" content="2024-08-22T04:49:13.130Z">
 <meta property="article:author" content="Skynion">
+<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2101,7 +2104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -2370,92 +2373,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/07/堆分配流程/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="Skynion's world">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="Skynion's world">
-    <meta itemprop="description" content="NaN">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2024/08/07/%E5%A0%86%E5%88%86%E9%85%8D%E6%B5%81%E7%A8%8B/"  itemprop="url">
-        malloc_2.23流程
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        malloc流程重要的数据结构1.malloc_state首先便是我们经常接触的arena
-123456789101112131415161718192021222324252627282930313233343536373839struct malloc_state&#123;  /* Serialize access.  */  mutex_t mutex;  /* Flags (for...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-08-07T13:27:31+08:00">2024-08-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/CTF/">CTF</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/CTF/" itemprop="url"><span itemprop="name">CTF</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2024/08/07/%E5%A0%86%E5%88%86%E9%85%8D%E6%B5%81%E7%A8%8B/' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
+  <article itemscope itemtype="https://schema.org.cn/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
   <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/07/出题流程/">
   <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
     <meta itemprop="name" content="Skynion's world">
@@ -2465,140 +2384,301 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="NaN">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2024/08/07/%E5%87%BA%E9%A2%98%E6%B5%81%E7%A8%8B/"  itemprop="url">
+    
+    
+      <h1 class="title" itemprop="name headline">
         GZ:CTF pwn 出题流程
-      </a>
-    </h2>
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="https://schema.org.cn/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://img.picgo.net/2024/06/12/3354a24385c2951ed5a08665e3ab484dee9644119a04b9a1.jpeg" class="lazyload" data-srcset="https://img.picgo.net/2024/06/12/3354a24385c2951ed5a08665e3ab484dee9644119a04b9a1.jpeg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">Skynion</p>
+  </a>
+</div>
+
+          
+        
+          
+            
   
-  <div class='md article-desc' itemprop="articleBody">
+  
+  
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/CTF/">CTF</a>
     
-      
-        0x01安装docker desktop
-因本人尝试在kali安装docker未成功, 故最后使用傻瓜式安装的docker desktop
-
-打开 docker官网 (访问本网站需要magic 能看到我文章的应该都会magic吧) 下载docker desktop并安装
-
-1.1给docker换源将如下代码复制到docker engine中
-1234567891011121314151617...
-      
+      <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
+        <a href="/categories/CTF/" itemprop="url"><span itemprop="name">CTF</span></a>
+      </span>
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-08-07T13:27:31+08:00">2024-08-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/CTF/">CTF</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/CTF/" itemprop="url"><span itemprop="name">CTF</span></a>
-            </span>
+
+
+
           
         
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2024-08-07T13:27:31+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 7, 2024</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h2 id="0x01安装docker-desktop"><a href="#0x01安装docker-desktop" class="headerlink" title="0x01安装docker desktop"></a>0x01安装docker desktop</h2><blockquote>
+<p>因本人尝试在kali安装docker未成功, 故最后使用傻瓜式安装的docker desktop</p>
+</blockquote>
+<p>打开 <a target="_blank" rel="noopener" href="https://www.docker.com/">docker官网</a> (访问本网站需要magic <del>能看到我文章的应该都会magic吧</del>) 下载docker desktop并安装</p>
+<p><img src="https://img.picgo.net/2024/08/22/docker6dce25e0138b77da.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/docker6dce25e0138b77da.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="docker官网"></p>
+<h3 id="1-1给docker换源"><a href="#1-1给docker换源" class="headerlink" title="1.1给docker换源"></a>1.1给docker换源</h3><p>将如下代码复制到docker engine中</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;builder&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;gc&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;defaultKeepStorage&quot;</span><span class="punctuation">:</span> <span class="string">&quot;20GB&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;experimental&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;features&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;buildkit&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://registry.docker-cn.com&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;http://hub-mirror.c.163.com&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://mirror.ccs.tencentyun.com&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.picgo.net/2024/08/22/docker-desktop1b3c739f77a77140.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/docker-desktop1b3c739f77a77140.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="docker desktop"></p>
+<p>这里我换的是中科大源, 你也可以选择换别的源</p>
+<p>​	<strong>注: 完成换源后docker engine可能不会马上跑起来, 将电脑重启即可</strong></p>
+<p>engine成功启动左下角应该如下所示:</p>
+<p><img src="https://img.picgo.net/2024/08/22/engine-running191e10ee3db31b9a.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/engine-running191e10ee3db31b9a.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="engine running"></p>
+<h2 id="0x02-gcc指定glibc版本编译"><a href="#0x02-gcc指定glibc版本编译" class="headerlink" title="0x02 gcc指定glibc版本编译"></a>0x02 gcc指定glibc版本编译</h2><p>因为出题可能需要用到某些特定版本的glibc, 所以不能用虚拟机直接编译(除非glibc刚好一致), 所以要制作一个用于编译的docker</p>
+<h3 id="2-1-制作对应版本glibc的容器镜像"><a href="#2-1-制作对应版本glibc的容器镜像" class="headerlink" title="2.1 制作对应版本glibc的容器镜像"></a>2.1 制作对应版本glibc的容器镜像</h3><p>这步非常轻松, 让gpt给你写一个Dockerfile即可</p>
+<p>比如我要用glibc2.23进行编译, 拷打gpt获得的Dockerfile如下:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用Ubuntu 16.04作为基础镜像</span></span><br><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">16.04</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 换源</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> sed -i <span class="string">&#x27;s@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g&#x27;</span> /etc/apt/sources.list &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    sed -i <span class="string">&#x27;s@//.*security.ubuntu.com@//mirrors.ustc.edu.cn@g&#x27;</span> /etc/apt/sources.list</span></span><br><span class="line"><span class="comment"># 更新软件包并安装必要的依赖</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update &amp;&amp; apt-get install -y \</span></span><br><span class="line"><span class="language-bash">    build-essential \</span></span><br><span class="line"><span class="language-bash">    gcc \</span></span><br><span class="line"><span class="language-bash">    libc6-dev \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get clean \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将你的C代码复制到容器中</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> test.c /app/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译你的C代码并将编译后的二进制文件保存到/app目录中</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> gcc -z norelro -fno-stack-protector -no-pie -z execstack -o <span class="built_in">test</span> test.c</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 保持容器运行，以便主机访问容器内的编译结果</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;sleep&quot;</span>, <span class="string">&quot;infinity&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注: gpt生成的默认不会换源,可以加上以下两行,换个源提升下载速度:</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 换源</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> sed -i <span class="string">&#x27;s@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g&#x27;</span> /etc/apt/sources.list &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    sed -i <span class="string">&#x27;s@//.*security.ubuntu.com@//mirrors.ustc.edu.cn@g&#x27;</span> /etc/apt/sources.list</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="gcc编译"><a href="#gcc编译" class="headerlink" title="gcc编译"></a>gcc编译</h4><ul>
+<li>NX          ：<code>-z execstack</code> &#x2F; <code>-z noexecstack</code> (关闭 &#x2F; 开启)    不让执行栈上的数据，于是JMP ESP就不能用了</li>
+<li>Canary  ：<code>-fno-stack-protector</code> &#x2F;<code>-fstack-protector</code> &#x2F; <code>-fstack-protector-all</code> (关闭 &#x2F; 开启 &#x2F; 全开启)  栈里插入cookie信息</li>
+<li>PIE         ：<code>-no-pie</code> &#x2F; <code>-pie</code> (关闭 &#x2F; 开启)   地址随机化，另外打开后会有<em>get_pc_thunk</em></li>
+<li>RELRO   ：<code>-z norelro</code> &#x2F; <code>-z lazy</code> &#x2F; <code>-z now</code> (关闭 &#x2F; 部分开启 &#x2F; 完全开启)  对GOT表具有写权限</li>
+<li>编译输出: <code>-o name</code>(输出名为<code>name</code>)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例: gcc -z norelro -fno-stack-protector -no-pie -z execstack -o test test.c</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-制作gcc的容器镜像"><a href="#2-2-制作gcc的容器镜像" class="headerlink" title="2.2 制作gcc的容器镜像"></a>2.2 制作gcc的容器镜像</h3><p>起一个文件夹,将<code>Dockerfile</code>还有源代码<code>test.c</code>放进去,在该文件夹下执行以下代码制作镜像:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build <span class="literal">-t</span> name_of_docker_image .                    <span class="comment"># 制作镜像</span></span><br></pre></td></tr></table></figure>
+
+<p>如图:</p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_11-08-073cf9df7c350eb53d.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_11-08-073cf9df7c350eb53d.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 11 08 07"></p>
+<p>test是复制出来的编译好的附件</p>
+<h3 id="2-3-将编译好的附件复制到本机"><a href="#2-3-将编译好的附件复制到本机" class="headerlink" title="2.3 将编译好的附件复制到本机"></a>2.3 将编译好的附件复制到本机</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="literal">--name</span> name_of_container name_of_docker_image  <span class="comment"># 启动容器</span></span><br><span class="line">docker <span class="built_in">cp</span> name_of_container:/app/test .                   <span class="comment"># 将文件复制到本机</span></span><br><span class="line">docker stop name_of_container &amp;&amp; docker <span class="built_in">rm</span> name_of_container    <span class="comment"># 关闭并删除容器</span></span><br></pre></td></tr></table></figure>
+
+<p>以上便获得了指定glibc版本编译的附件了</p>
+<h2 id="0x03-题目镜像制作"><a href="#0x03-题目镜像制作" class="headerlink" title="0x03 题目镜像制作"></a>0x03 题目镜像制作</h2><h3 id="3-1CTF-Xined项目获取"><a href="#3-1CTF-Xined项目获取" class="headerlink" title="3.1CTF-Xined项目获取"></a>3.1CTF-Xined项目获取</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载地址,下载完成后拷贝到任意文件夹中</span></span><br><span class="line">https://github.com/CTF<span class="literal">-Archives</span>/ctf<span class="literal">-docker-template</span></span><br><span class="line"><span class="comment">#或者在文件夹下使用powershell直接git获取</span></span><br><span class="line">git clone https://github.com/CTF<span class="literal">-Archives</span>/ctf<span class="literal">-docker-template</span></span><br></pre></td></tr></table></figure>
+
+<p>完成后效果如下图:</p>
+<p><img src="https://img.picgo.net/2024/08/22/docker-template8952aeb830405702.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/docker-template8952aeb830405702.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="docker template"></p>
+<p>使用教程请查看<a target="_blank" rel="noopener" href="https://github.com/CTF-Archives/ctf-docker-template">CTF-Xined项目</a>github的教程</p>
+<p>我们出pwn题一般只需用到以下4个文件</p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_10-38-50ff11606d573e687e.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_10-38-50ff11606d573e687e.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 10 38 50"></p>
+<p>打开任意一个,然后将出的题目附件放到src下</p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_10-42-3192c6aa1b03e463b8.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_10-42-3192c6aa1b03e463b8.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 10 42 31"><br><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_10-42-52b715004b281aca03.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_10-42-52b715004b281aca03.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 10 42 52"></p>
+<p>为了图方便我直接把附件名称改成attachment了, 如果需要保留附件名称请参考README.md</p>
+<p>例如ubuntu_16.04的README.md如下:</p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_10-46-495b38858bcb7d541b.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_10-46-495b38858bcb7d541b.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 10 46 49"></p>
+<h3 id="3-2-题目镜像制作"><a href="#3-2-题目镜像制作" class="headerlink" title="3.2 题目镜像制作"></a>3.2 题目镜像制作</h3><p>在ubuntu版本目录下启动powershell, 执行以下命令, 制作题目镜像</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#docker build -t 创建容器名字（题目名字）</span></span><br><span class="line">docker build <span class="literal">-t</span> name_of_docker_image .    <span class="comment">#注意后面有个点.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注: build失败的话请使用magic并尝试</strong></p>
+<p>查看制作的题目镜像</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images    <span class="comment">#查看制作的镜像</span></span><br></pre></td></tr></table></figure>
+
+<p>如此一来便制作完容器镜像了</p>
+<h2 id="0x04-将容器镜像push到github"><a href="#0x04-将容器镜像push到github" class="headerlink" title="0x04 将容器镜像push到github"></a>0x04 将容器镜像push到github</h2><p>如果GZ:CTF平台没有搭在本地,则需要将容器镜像push到github以便平台访问</p>
+<h3 id="4-1-获取token用来往github里面传packge"><a href="#4-1-获取token用来往github里面传packge" class="headerlink" title="4.1 获取token用来往github里面传packge"></a>4.1 获取token用来往github里面传packge</h3><p>打开github进行如下操作：</p>
+<ol>
+<li>点击右上角头像，选择<code>Settings</code></li>
+<li>左边一列拉到最下面点击<code>Developer settings</code></li>
+<li>左边一列点开<code>Personal access tokens</code>选择<code>Tokens(classic)</code></li>
+<li>偏右上角点开<code>Generate new token</code>选择<code>Generate new token(classic)</code></li>
+</ol>
+<p>嫌麻烦直接访问：<a target="_blank" rel="noopener" href="https://github.com/settings/tokens/new">https://github.com/settings/tokens/new</a> 即可完成上述步骤</p>
+<p>然后在Note里填一个token名,在下面勾选<code>write:oackages</code></p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_11-55-23e469d973ebf04568.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_11-55-23e469d973ebf04568.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 11 55 23"></p>
+<p>然后拉到最下面<code>Generate token</code>,会生成一个token,将它复制下来并保存好</p>
+<h3 id="4-2-将镜像push到github上"><a href="#4-2-将镜像push到github上" class="headerlink" title="4.2 将镜像push到github上"></a>4.2 将镜像push到github上</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> your_token | docker login ghcr.io <span class="literal">--username</span> your_id <span class="literal">--password-stdin</span></span><br><span class="line">docker tag name_of_package ghcr.io/your_id/app:latest</span><br><span class="line">docker push ghcr.io/your_id/app:latest</span><br></pre></td></tr></table></figure>
+
+<p>将上述代码中的<code>your_token</code>替换成上一步获取的 token, 将<code>your_id</code>替换成你的 github  id <strong>注意: 后两行代码的id需全部小写</strong></p>
+<p><code>name_of_package</code>填你想要的package名, <code>app</code>是镜像名(REPOSITORY), <code>latest</code>是版本号(TAG)</p>
+<p>如果忘记可以在powershell执行<code>docker images</code>查询,如下图：</p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-09-2232e406cae7b6d889.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-09-2232e406cae7b6d889.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 12 09 22"></p>
+<blockquote>
+<p>例如: docker push ghcr.io&#x2F;skynionkrz&#x2F;babyshellcode:latest</p>
+</blockquote>
+<p>最后随便开启一个powershell,执行以上代码即可</p>
+<h3 id="4-3-将package改成public-填入GZ-CTF中的容器镜像"><a href="#4-3-将package改成public-填入GZ-CTF中的容器镜像" class="headerlink" title="4.3 将package改成public 填入GZ:CTF中的容器镜像"></a>4.3 将package改成public 填入GZ:CTF中的容器镜像</h3><p>打开github, 点击右上角头像选择<code>Your repositories</code>, 找到<code>Packages</code></p>
+<p>之前都没有问题的话, 应该是如图所示:</p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-20-21a79d91abc90a6f08.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-20-21a79d91abc90a6f08.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 12 20 21"></p>
+<p>你能找到刚刚上传的镜像, 点开该package, 选择<code>Package settings</code></p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-22-17328d74087efe9f5d.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-22-17328d74087efe9f5d.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 12 22 17"></p>
+<p>扒拉到最下面选择<code>Change visibility</code>, 改成public</p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-28-109ca6815ee2ab1070.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-28-109ca6815ee2ab1070.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 12 28 10"></p>
+<p>最后一步!!! 把项目地址复制到容器镜像里</p>
+<p><img src="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-30-06464bb57296495357.png" class="lazyload" data-srcset="https://img.picgo.net/2024/08/22/Snipaste_2024-08-22_12-30-06464bb57296495357.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Snipaste 2024 08 22 12 30 06"></p>
+<p><strong>注: 国内连不太上，把ghcr.io换成ghcr.nju.edu.cn就行了; 还有别忘了把服务端口改成9999(默认是9999)</strong></p>
+<h2 id="0x05-Win"><a href="#0x05-Win" class="headerlink" title="0x05 Win!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"></a>0x05 Win!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://almostgph.github.io/2024/03/01/About-docker/">使用ghcr和wsrx和docker在GZ:CTF中部署动态容器的题目 | 1r0ny (almostgph.github.io)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/W13680336969/article/details/138014438">PWN题完整出题流程（GCC编译ELF文件，搭建GZ:CTF平台，基于CTF-Xined部署题目至GZ:CTF平台）_gzctf-CSDN博客</a></li>
+</ul>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/2024/08/07/%E5%87%BA%E9%A2%98%E6%B5%81%E7%A8%8B/' itemprop="url">
-            Read More
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-08-22T12:49:13+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Aug 22, 2024</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/29/堆学习路线/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="Skynion's world">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="Skynion's world">
-    <meta itemprop="description" content="NaN">
-  </span>
+          
   
   
   
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CTF/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>CTF</p></a></div>
+  <span hidden itemprop="keywords">CTF</span>
   
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2024/07/29/%E5%A0%86%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"  itemprop="url">
-        堆学习路线
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        0x01 堆常见泄露方式首先main_arena是一个存在于libc上的结构体,上面维护了一些指针,如下图(以64位为例):
-
-
-黄色的部分是 fastbins 单链表,每个链表存储特定大小的 chunk , LIFO后进先出
-绿色的部分是 topchunk ,存储着 topchunk 的 chunk 首地址
-紫色的部分是 last_remainder ,存储着 melloc 时切割剩余的部...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2024/08/07/%E5%87%BA%E9%A2%98%E6%B5%81%E7%A8%8B/&title=GZ:CTF pwn 出题流程 - Skynion's world&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2024/08/07/%E5%87%BA%E9%A2%98%E6%B5%81%E7%A8%8B/&title=GZ:CTF pwn 出题流程 - Skynion's world&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+</div>
+
+
+
         
-        <time itemprop="dateCreated datePublished" datetime="2024-07-29T23:00:00+08:00">2024-07-29</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/CTF/">CTF</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/CTF/" itemprop="url"><span itemprop="name">CTF</span></a>
-            </span>
-          
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2024/07/29/%E5%A0%86%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/' itemprop="url">
-            Read More
-          </a>
-        </div>
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2024/08/07/%E5%A0%86%E5%88%86%E9%85%8D%E6%B5%81%E7%A8%8B/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>malloc_2.23流程</p>
+          <p class='content'>malloc流程重要的数据结构1.malloc_state首先便是我们经常接触的arena
+123456789101112131415161718192021222324252627282930...</p>
+        </a>
+      
+      
+        <a class='next' href='/2024/07/29/%E5%A0%86%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/'>
+          <p class='title'>堆学习路线<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>0x01 堆常见泄露方式首先main_arena是一个存在于libc上的结构体,上面维护了一些指针,如下图(以64位为例):
+
+
+黄色的部分是 fastbins 单链表,每个链表存储特定大小的 ...</p>
+        </a>
       
     </div>
   
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
+  <!-- 文章推荐 -->
   
-    
   
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
 
 
-    
-  
+
+
 </div>
 <aside id='l_side' itemscope itemtype="https://schema.org.cn/WPSideBar">
   
@@ -2607,120 +2687,31 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
-<section class="widget blogger desktop mobile ">
-  <div class='content'>
     
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://img.picgo.net/2024/08/07/489A2A5F8E3B4E30E822721A9CBBDC74e513f5325b11117b.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Skynion's world</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/1652103809@qq.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/SkynionKRZ/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://www.kugou.com/songlist/gcid_3zn5wk8jz2z045/?src_cid=3zn5wk8jz2z045/"
-              class="social fa-solid fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget category desktop">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            active-action="action-categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(3)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/CTF/" style="font-size: 14px; color: #999">CTF</a>
-    </div>
-  </section>
-
-
-    
-  
-
   
 
 
 <div class="widget-sticky">
+
+  
+  
+
+
+<section class="widget toc-wrapper desktop mobile" id="toc-div" >
+  
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01%E5%AE%89%E8%A3%85docker-desktop"><span class="toc-text">0x01安装docker desktop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E7%BB%99docker%E6%8D%A2%E6%BA%90"><span class="toc-text">1.1给docker换源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-gcc%E6%8C%87%E5%AE%9Aglibc%E7%89%88%E6%9C%AC%E7%BC%96%E8%AF%91"><span class="toc-text">0x02 gcc指定glibc版本编译</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%88%B6%E4%BD%9C%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%ACglibc%E7%9A%84%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F"><span class="toc-text">2.1 制作对应版本glibc的容器镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gcc%E7%BC%96%E8%AF%91"><span class="toc-text">gcc编译</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%88%B6%E4%BD%9Cgcc%E7%9A%84%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F"><span class="toc-text">2.2 制作gcc的容器镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%B0%86%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84%E9%99%84%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%88%B0%E6%9C%AC%E6%9C%BA"><span class="toc-text">2.3 将编译好的附件复制到本机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E9%A2%98%E7%9B%AE%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C"><span class="toc-text">0x03 题目镜像制作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1CTF-Xined%E9%A1%B9%E7%9B%AE%E8%8E%B7%E5%8F%96"><span class="toc-text">3.1CTF-Xined项目获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E9%A2%98%E7%9B%AE%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C"><span class="toc-text">3.2 题目镜像制作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E5%B0%86%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8Fpush%E5%88%B0github"><span class="toc-text">0x04 将容器镜像push到github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E8%8E%B7%E5%8F%96token%E7%94%A8%E6%9D%A5%E5%BE%80github%E9%87%8C%E9%9D%A2%E4%BC%A0packge"><span class="toc-text">4.1 获取token用来往github里面传packge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%B0%86%E9%95%9C%E5%83%8Fpush%E5%88%B0github%E4%B8%8A"><span class="toc-text">4.2 将镜像push到github上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%B0%86package%E6%94%B9%E6%88%90public-%E5%A1%AB%E5%85%A5GZ-CTF%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F"><span class="toc-text">4.3 将package改成public 填入GZ:CTF中的容器镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-Win"><span class="toc-text">0x05 Win!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-text">参考文章</span></a></li></ol>
+  </div>
+</section>
+
+  
 
 </div>
 
@@ -2728,6 +2719,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <!-- Custom Files side end -->
 </aside>
+
 
 
         </div>
@@ -3209,7 +3201,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Skynion's world","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"NaN"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"Skynion's world"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/tags/CTF/","name":"CTF"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Skynion's world","url":"http://example.com/","keywords":null,"description":"NaN","author":{"@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"NaN"},"publisher":{"@type":"Organization","name":"Skynion's world","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","description":"NaN","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"Skynion's world","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Skynion's world","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"NaN"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"Skynion's world"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/CTF/","name":"CTF"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2024/08/07/出题流程/","name":"GZ:CTF pwn 出题流程"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Skynion's world","url":"http://example.com/","keywords":null,"description":"NaN","author":{"@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"NaN"},"publisher":{"@type":"Organization","name":"Skynion's world","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"GZ:CTF pwn 出题流程","description":"NaN","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/08/07/%E5%87%BA%E9%A2%98%E6%B5%81%E7%A8%8B/"},"author":{"@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"Skynion's world","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2024/08/07/%E5%87%BA%E9%A2%98%E6%B5%81%E7%A8%8B/","wordCount":0,"datePublished":"2024-08-07T05:27:31.000Z","dateModified":"2024-08-22T04:49:13.130Z","articleSection":"CTF","keywords":"CTF","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
